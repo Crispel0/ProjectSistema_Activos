@@ -14,19 +14,21 @@
     {% csrf_token %}
     <div class="container border border-2">
     <div class="row">
-        <div class="col-3 ">
+        <div class="col-12 col-md-3">
             <h2>Componente</h2>
+            <br/>
             <br/>
             <br/>
             <h5>1. tarjeta madre: </h5>
             <br/>
             <br/>
-            <br/>
+            <br>
             <h5>2. fuente de poder: </h5>
             <br/>
             <br/>
             <br/>
             <br/>
+            <br>
             <h5>3. Procesador: </h5>
             <br/>
             <br/>
@@ -55,13 +57,15 @@
             <br/>
             <br/>
             <br/>
+            <br>
             <h5>9. Mouse: </h5>
+            <br/>
             <br/>
             <br/>
             <br/>
             <h5>10. Teclado: </h5>
         </div>
-        <div class="col-2">
+        <div class="col-6 col-md-2">
             <h2>Marca</h2>
             <br/>
             {{ form.tarjeta_madre_marca | as_crispy_field }}
@@ -86,7 +90,7 @@
             <br/>
             {{ form.teclado_marca | as_crispy_field }}
         </div>
-        <div class="col-2">
+        <div class="col-6 col-md-2">
             <h2>Modelo</h2>
 
             <br/>
@@ -111,9 +115,9 @@
 
             
         </div>
-        <div class="col-2">
+        <div class="col-6 col-md-2">
             <h2>Serie</h2>
-
+            <br>
             {{ form.tarjeta_madre_serie | as_crispy_field }}
             {{ form.fuente_poder_serie | as_crispy_field }}
             <br/>
@@ -136,7 +140,7 @@
 
 
             </div>
-            <div class="col-2">
+            <div class="col-6 col-md-2">
             <h2>No aplica</h2>
             <br/>   
             <br/>
