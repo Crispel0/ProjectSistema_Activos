@@ -1,0 +1,29 @@
+
+{% load static %}
+{% include 'partials/header.html' %}
+{% include 'partials/slidebar.html' %}
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css"/>
+</head>
+            <div class="col py-3 text-center bgnavbar" >
+                {% block content %}
+                 
+
+                 {% endblock %}
+            </div>
+            </div>
+        </div>
+    </nav>
+<script src="https://kit.fontawesome.com/5ac4c3813c.js" crossorigin="anonymous"></script>
+
+{% block javascript %}
+
+{% endblock javascript %}
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="/static/js/darkMode.js"></script>
+
+
+</body>
+
+  {% include 'partials/footer.html' %}

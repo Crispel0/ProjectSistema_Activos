@@ -1,0 +1,33 @@
+.dark-mode .bgnavbar {
+    background: #333;
+    color: #fff;}
+
+.bgnavbar{
+  background: #fdfaf1;
+}
+
+.dark-mode .text-dark{
+  color: white;
+}
+
+.dark-mode .card{
+  border: solid 1px #e6ca77;
+
+}
+
+.dark-mode .card-body{
+  background-color: white;
+}
+
+.dark-mode h2{
+  color: #333;
+}
+
+.dark-mode h3{
+  color: #333;
+}
+
+.dark-mode .form-label{
+  color: #333;
+}
+
