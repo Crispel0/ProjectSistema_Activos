@@ -51,6 +51,16 @@
                             <ul class="btn rounded-fill" onclick="toggleDarkMode()"><i class="fa fa-moon"></i><span class="ms-1 d-none d-sm-inline">Modo Nocturno</span></ul>
                         </a>
                     </li>
+                    <li>
+                        <a class="text-decoration-none text-dark nav-link px-0 mx-0" href="#">
+                            <ul class="btn rounded-fill" onclick="aumentar()"><i class="bi bi-zoom-in"></i><span class="ms-1 d-none d-sm-inline">Aumentar</span></ul>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-decoration-none text-dark nav-link px-0 mx-0" href="#">
+                            <ul class="btn rounded-fill" onclick="disminuir()"><i class="bi bi-zoom-out"></i><span class="ms-1 d-none d-sm-inline">Disminuir</span></ul>
+                        </a>
+                    </li>
                     
                     <li>
                     <a class="text-decoration-none text-dark nav-link px-0" href="{% url 'salir' %}">
@@ -76,4 +86,4 @@
                 </div>
             </div>
             <script src="/static/js/darkMode.js"></script>
-            <!--<script src="/static/js/aumentarFuente.js"></script>-->
+            <script src="/static/js/aumentarFuente.js"></script>
