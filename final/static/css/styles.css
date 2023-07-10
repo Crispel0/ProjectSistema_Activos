@@ -1,3 +1,5 @@
+
+/*change of background of the body of each page to color similiar to black*/
 .dark-mode .bgnavbar {
     background: #333;
     color: #fff;}
@@ -11,30 +13,46 @@
 }
 
 .dark-mode .card{
-  border: solid 1px #e6ca77;
-
+  border: solid 1px white;
+background-color: #333;
 }
 
-.dark-mode .card-body{
-  background-color: white;
+.dark-mode h1{
+  color: white;
 }
 
 .dark-mode h2{
   color: #333;
 }
 
-.dark-mode h3{
-  color: #333;
-}
-
-.dark-mode h3{
-  color: #333;
+#datos{
+  color: white;
 }
 
 .dark-mode .form-label{
-  color: #333;
+  color: white;
+}
+.dark-mode i {
+  color: white;
 }
 
+.dark-mode .login-box-msg{
+  color: white;
+}
+
+
+/*spacing between the td of the table in view password_reset_form
+Espaciamiento entre los data table de la tabla que esta en la vista password_reset_form*/
+
+td {
+  padding: 1px,2px,1px,2px;
+}
+
+th{
+
+  padding: 1px,2px,1px,2px;
+
+}
 
 
 
