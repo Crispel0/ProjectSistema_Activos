@@ -10,7 +10,7 @@
     <div class="card-body">
         <h5 class="card-title">Datos personales</h5>
         <p class="card-text">
-        <h2>Datos de perfil</h2>
+        <h2 id="datos" >Datos de perfil</h2>
         <form method="POST">
             {% csrf_token %}
             {{form  | crispy}}
