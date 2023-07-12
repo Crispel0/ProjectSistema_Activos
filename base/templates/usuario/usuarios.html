@@ -1,0 +1,77 @@
+{% extends 'partials/body.html' %}
+
+
+{% block content %}
+
+
+{% if request.user.is_authenticated %}
+  
+<h1>{{user.Usuario.Rol}}</h1>
+
+{% endif %}
+  
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+<table id="usuarios" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">Nro</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th hscope="col">Correo </th>
+        <th scope="col">Tipo de Documento</th>
+        <th scope="col"># Documento</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Estado</th>
+        <th >Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuario in usuarios %}
+      <tr>
+        {% if usuario.estado != '3' %}
+        <td>{{forloop.counter}}</td>
+        <td >{{usuario.nombres}}</td>
+        <td>{{usuario.apellidos}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.tipoDocumento}}</td>
+        <td>{{usuario.documento}}</td>
+        <td>{{usuario.telefono}}</td>
+        <td>{{usuario.direccion}}</td>
+        <td>{{usuario.fecha_nacimiento}}</td>
+        <td>{{usuario.rol}}</td>
+        <td>{{usuario.get_estado_display}}</td>
+        
+        
+      <td>
+        <a class="btn btn-primary" href = "{% url 'editar_usuario' usuario.id %}">
+          <i class="fas fa-edit" title="Editar"></i></a>
+        <a href="{% url 'usuarios_eliminar' usuario.id %}" class="btn btn-danger">
+        <i class="fas fa-trash-alt"></i></a>
+      </td>
+      
+      {% endif %}
+
+    </tr>
+    
+
+    {% endfor %}
+
+    <script>
+    
+    </script>
+  </tbody>
+</table>
+{% include 'partials/js.html' %}
+{% endblock content %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock javascript %}
+
+
+
+

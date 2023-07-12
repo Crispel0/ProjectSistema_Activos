@@ -1,0 +1,87 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <title>Hoja de vida Activo</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="header">
+          <img
+            src="http://127.0.0.1:8000{% static 'img/logo nuevo 2022.png' %}"
+          />
+          <img
+             src=" http://127.0.0.1:8000{% static 'img/Escudo.png' %}"
+          />
+        </div>
+        <br/>
+        <br/>
+        <h1 class="text-center">Activo Hardware</h1>
+        <table class="table my-3">
+          <thead>
+              <tr>
+                  <th>tarjeta madre</th>
+                  <th>fuente poder</th>
+                  <th>disco duro 1</th>
+                  <th>disco duro 2</th>
+                  <th>memoria ram slot 1</th>
+                  <th>memoria ram slot 2</th>
+                  <th>tarjeta video</th>
+                  <th>monitor</th>
+                  <th>mouse</th>
+                  <th>teclado</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for item in ofimatica %}
+              <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{item.paquete_ofimatica}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              {% endfor %}  
+          </tbody>
+      </table>
+        
+        <h1>Activo Software</h1>
+        <table class="table my-3">
+          <thead>
+              <tr>
+                  <th>sistema operativo</th>
+                  <th>version sistema op</th>
+                  <th>ofimatica</th>
+                  <th>version ofimatica</th>
+                  <th>antivirus</th>
+                  <th>navegador 1</th>
+                  <th>navegador 2</th>
+                  <th>herramienta cloud</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for item in ofimatica %}
+              <tr>
+                  <td>{{item.counter}}</td>
+                  <td>{{item.paquete_ofimatica}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              {% endfor %}  
+          </tbody>
+      </table>
+      </div>
+    </div>
+  </body>
+</html>

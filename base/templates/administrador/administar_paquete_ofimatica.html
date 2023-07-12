@@ -1,0 +1,61 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-4 col-sm-6">
+            <table class="table table-responsive my-3">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Paquete</th>
+                        <th colspan="2">acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in ofimatica %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.paquete_ofimatica}}</td>
+                        <td><a href="#" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
+                        <td><a href="#" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
+                    </tr>
+                    {% endfor %}  
+                </tbody>
+            </table>
+            <a href="{% url 'agregar_paquete_ofimatica' %}" class="btn btn-success">Agregar paquete Ofimatica</a>
+        </div>
+        <div class="col-lg-6 col-md-7 col-sm-6">
+            <table class="table my-3">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>versión</th>
+                        <th>Paquete</th>
+                        <th colspan="2">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in version_ofimatica %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{item.version}}</td>
+                        <td>{{item.paquete}}</td>
+                        <td><a href="#" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
+                        <td><a href="#" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
+                    </tr>
+                    {% endfor %}  
+                </tbody>
+            </table>
+            <a href="{% url 'agregar_version_ofimatica' %}" class="btn btn-success">Agregar versión</a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}  
+
+
+{% include 'partials/footer.html' %}

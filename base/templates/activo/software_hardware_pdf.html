@@ -1,0 +1,130 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formato Activo PDF</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="/static/css/Responsive-2.4.1/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />            
+</head>
+<style>
+.table_row:nth-child(even) {
+    background-color: #e6ca77;
+}
+
+th {
+    margin: 4;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 8px;
+}
+
+h2{
+    margin: 4;
+}
+
+</style>
+<body>
+
+    <img class="img-fluid" src="/static/img/logo nuevo 2022.png" alt="logo" style="width:120px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-center table-responsive mt-5">
+                    <h2 class="text-center">Software<i class="fa-solid fa-code" style="color: #030303;"></i></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="registro" class="vh-50 display d-flex justify-content-center compact table-bordered border-secondary-subtled mx-auto mt-4"
+        style="width:80%">
+        <thead class="table_header">
+            <tr class="table_row" >
+                <th>Sistema Operativo</th>
+                <th>Version Sistema Operativo</th>
+                <th>Ofimatica</th>
+                <th>Version Ofimatica</th>
+                <th>Antivirus</th>
+                <th>Navegador</th>
+                <th>Navegador2</th>
+                <th>Herramientas Cloud</th>
+                <th>modelo</th>
+                <th>capacidad</th>
+                <th>no aplica</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table_row">
+                <td>Windows</td>
+                <td>Windows 10</td>
+                <td>Microsoft office</td>
+                <td>365</td>
+                <td>avast</td>
+                <td>microsoft edge</td>
+                <td>opera</td>
+                <td>google drive</td>
+                <td>intel I5 1450</td>
+                <td>250</td>
+                <td><input type="checkbox"> no aplica</input></td>
+            </tr>
+            <tr class="table_row">
+                <td>Windows</td>
+                <td>Windows 7</td>
+                <td>Microsoft office</td>
+                <td>365</td>
+                <td>endpoint</td>
+                <td>microsoft edge</td>
+                <td>google chrome</td>
+                <td>one drive</td>
+                <td>intel I5 1450</td>
+                <td>250</td>
+                <td><input type="checkbox"> no aplica</input></td>
+            </tr>
+            </tfoot>
+        
+        </table>
+        <h2 class="text-center">Hardware<i class="fa-solid fa-computer" style="color: #0a0a0a;"></i></h2>
+
+            <table id="registro" class="vh-50 display compact table-bordered border-secondary-subtled mx-auto mt-4"
+            style="width: 100%">
+            <thead class="table_header">
+                <tr class="table_row" >
+                    <th>Componente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serie</th>
+                    <th>no aplica</h>
+            </thead>
+            <tbody>
+                <tr class="table_row">
+                    <td>componente1</td>
+                    <td>Marca 1</td>
+                    <td>Modelo 1</td>
+                    <td>Serie 1</td>
+                    <td><input type="checkbox"> no aplica</input></td>
+                </tr>
+                <tr class="table_row">
+                    <td>componente 2</td>
+                    <td>Marca 2</td>
+                    <td>Modelo 2</td>
+                    <td>Serie 2</td>
+                    <td><input type="checkbox"> no aplica</input></td>
+                </tfoot>
+            </table>
+      
+
+        <script src="/static/js/datatables.min.js"></script>
+        </body>
+
+</html>
