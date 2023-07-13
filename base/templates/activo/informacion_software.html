@@ -1,5 +1,7 @@
 {% extends 'partials/body.html' %}
 {% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+
 
 
 {% block content %}
@@ -10,21 +12,48 @@
                 <h3>Información de software</h3>
             </div>
             {% for item in consulta %}
-                <p>Marca. {{item.marca}}</p>    
+                <p>Marca. {{item.marca}}</p>
                 <p>Activo No. {{item.serie}}</p>    
             {% endfor %}
             <div class="card-text">
                 <form method="POST">
                     {% csrf_token %}
+                    
                     {{form | crispy}}
                     <button class="btn btn-success" type="submit"> Guardar </button>
                     <a href="{% url 'listado_activos' %}" class="btn btn-danger"> Volver </a>
                  </form>
-                </div>
+            </div>
         </div>
     </div>
 </div>
-{% endblock %}  
+<div id="div_id_sistema_operativo" class="mb-3"> <label for="id_sistema_operativo" class="form-label requiredField">
+    Sistema operativo<span class="asteriskField">*</span> </label> 
+    <select name="sistema_operativo" class="select form-select" required="" id="id_sistema_operativo"> 
+        <option value="" selected="">---------</option>
+        {% for item in form %}
+        <option value="{{item.estado}}">{{item.sistema_operativo}}</option>
+        {% endfor %}
+</select> 
+</div>
+<div id="div_id_version_sistema_op" class="mb-3"> <label for="id_version_sistema_op" class="form-label requiredField">
+    Version sistema op<span class="asteriskField">*</span> </label> 
+    <select name="version_sistema_op" class="select form-select" required="" id="id_version_sistema_op"> 
+        <option value="" selected="">---------</option>
+        {% for item in form%}
+        <option value="{{item.estado}}" data-chained="{{item.sistema_operativo.estado}}">{{item.version_sistema_op}}</option>
+        {% endfor %}
+      
+</select>
+ </div>
 
+ <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+ <script href="/static/js/jquery.chained.min.js"></script>
+<script>
+    $("id_version_sistema_op").chained("id_sistema_operativo");
+    /*$("#id_version_ofimatica").chained("#id_ofimatica");*/
+</script>
+
+{% endblock %}  
 
 {% include 'partials/footer.html' %}

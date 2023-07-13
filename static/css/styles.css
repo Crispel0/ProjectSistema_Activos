@@ -13,7 +13,6 @@ color: white;
 }
 
 .dark-mode .card{
-border: solid 1px white;
 background-color: #333;
 }
 
@@ -30,7 +29,13 @@ background-color: #333;
   color: white;
 }
 
+.dark-mode h1{
+  color: white;
+}
 
+.dark-mode b{
+  color: white;
+}
 .dark-mode h2{
 color: white;
 }
@@ -41,6 +46,11 @@ color: white;
 
 #datos{
 color: white;
+}
+ /*vista confirmacion cambio contraseña*/
+.dark-mode #cambio_contraseña {
+  background-color: #333 !important;
+
 }
 
 .dark-mode .form-label{
@@ -57,6 +67,7 @@ color: white;
 .dark-mode .login-box-msg{
 color: white;
 }
+
 
 
 /*spacing between the td of the table in view password_reset_form

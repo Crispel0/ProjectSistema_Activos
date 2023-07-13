@@ -36,7 +36,7 @@ class SistemaOperativoForm(ModelForm):
         model = SistemaOperativo
         exclude=['estado']
 
-    
+
 class VersionSistemaOperativoForm(ModelForm):
     class Meta:
         model = VersionSistemaOperativo

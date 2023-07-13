@@ -8,6 +8,7 @@ from usuarios.models import Usuario
 from django.contrib import messages
 from django.shortcuts import render
 
+
 # Create your views here.
 def listado_activos(request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
