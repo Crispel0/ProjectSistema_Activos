@@ -12,6 +12,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="/static/css/Responsive-2.4.1/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons-bs5/2.4.1/buttons.bootstrap5.min.js" integrity="sha512-wM9b/XtIOHJMJy0P7RFhcNKaFLspIg8EWGmwfYdc6B/YJp6scoZZ5Hdq29rRxxf+DCiQbfEQ5MT/HLBFcZ6hSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />            
 </head>
 <style>
@@ -31,6 +32,42 @@ td {
 h2{
     margin: 4;
 }
+
+.btn {
+        margin-right: 10px;
+        max-width: 150px;
+        min-width: auto;
+    }
+
+    .dt-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_info {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_paginate {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_length {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_filter {
+        display: flex;
+        justify-content: center;
+        margin: 20px 10px
+    }
+
+    .dataTables_filter input {
+        text-align: end;
+    }
 
 </style>
 <body>
@@ -125,6 +162,10 @@ h2{
       
 
         <script src="/static/js/datatables.min.js"></script>
-        </body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables-buttons/2.4.1/js/buttons.html5.min.js" integrity="sha512-RvfP4FGRLhK9ZZjvGrGibZOC1r5jBhKTZMFUKGOv6r3tUP/mTPS7gyPl9t4LB+spY14tjUeAxOsYMBvNT2ayOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons-bs4/2.4.1/buttons.bootstrap4.min.js" integrity="sha512-3EwIu+jBDO50pkMj6k/pqHekyr/iGJZ54pq5zCMNfVKd7bA/63igQWUqQItKVUMGrAfQz9yVjWj+HQFV8TRlNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" src="/static/js/buttons.js"></script>
+
+    </body>
 
 </html>
