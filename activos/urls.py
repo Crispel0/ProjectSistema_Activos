@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import listado_activos, informacion_software, informacion_hardware,administar_software, agregar_sistema_operativo, agregar_version_sistema_operativo, administrar_ofimatica, visualizacion_software_hardware ,agregar_paquete_ofimatica, agregar_version_ofimatica, generar_pdf, editar_sistema_operativo,eliminar_sistema_operativo, eliminar_version_sistema_operativo, editar_version_sistema_operativo
+from .views import listado_activos, informacion_software,cargar_versiones, informacion_hardware,administar_software, agregar_sistema_operativo, agregar_version_sistema_operativo, administrar_ofimatica, visualizacion_software_hardware ,agregar_paquete_ofimatica, agregar_version_ofimatica, generar_pdf, editar_sistema_operativo,eliminar_sistema_operativo, eliminar_version_sistema_operativo, editar_version_sistema_operativo
 
 urlpatterns = [
     path("listado/", listado_activos, name="listado_activos"),
@@ -17,6 +17,7 @@ urlpatterns = [
     path ('eliminar_version_sistema_operativo/<int:pk>', eliminar_version_sistema_operativo, name="eliminar_version_sistema_operativo"),
     path ('editar_version_sistema_operativo/<int:pk>', editar_version_sistema_operativo, name="editar_version_sistema_operativo"),
     path ('software_hardware/', visualizacion_software_hardware, name="visualizar_software_hardware"),
+    path('informacion_software/ajax/cargador_versiones',cargar_versiones, name="ajax_cargador_versiones")
 
 
 ]

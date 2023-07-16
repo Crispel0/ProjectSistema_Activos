@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from usuarios.models import  Usuario
+from smart_selects.db_fields import ChainedForeignKey
+
 
 # Create your models here.
 
@@ -34,15 +36,30 @@ class SistemaOperativo(models.Model):
     estado = models.BooleanField (default=True, verbose_name="Estado")
     def __str__(self):
         return self.nombre_sistema
+   
     
 class VersionSistemaOperativo (models.Model):
-    version_sistema = models.CharField (max_length= 150, unique=True, verbose_name = "Version del sistema")
-    sistema_operativo = models.ForeignKey(SistemaOperativo, on_delete=models.CASCADE)
+    version_sistema = models.CharField (max_length= 150, unique=True)
+    sistema_operativo = models.ForeignKey(SistemaOperativo, on_delete=models.CASCADE, verbose_name="version sistema operativo")
     estado = models.BooleanField (default=True, verbose_name="Estado")
 
-    
+  
     def __str__(self)->str:
         return  self.version_sistema
+    
+"""version_sistema = ChainedForeignKey(
+        sistema_operativo,
+        chained_field='sistema_operativo',
+        chained_model_field='sistema_operativo',
+        show_all=False,
+        auto_choose=True,
+        sort=True
+    )"""
+
+  
+    
+""" class Meta:
+        verbose_name_plural = 'Versiones del sistema operativo'"""
         
 class Ofimatica (models.Model):
     paquete_ofimatica  = models.CharField (max_length=150,unique=True, verbose_name="Paquete de ofimatica")

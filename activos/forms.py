@@ -23,7 +23,6 @@ class InformacionSoftwareForm(ModelForm):
     navegador_1 = forms.ModelChoiceField(queryset = Navegador.objects.all()) 
     navegador_2 = forms.ModelChoiceField(queryset = Navegador.objects.all())
     herramienta_cloud = forms.ModelChoiceField(queryset = HerramientaCloud.objects.all()) 
-    
 
 class InformacionHardwareForm(ModelForm):
     class Meta:

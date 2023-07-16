@@ -6,7 +6,6 @@ from .utils import render_to_pdf
 from django.views.generic import View
 from usuarios.models import Usuario
 from django.contrib import messages
-from django.shortcuts import render
 
 
 # Create your views here.
@@ -47,6 +46,16 @@ def informacion_software(request, id):
         consulta = TipoActivo.objects.filter(id=id)
         context = {'form': formulario, 'titulo': titulo, 'consulta': consulta, 'rol_usuario':rol_usuario}
         return render(request, 'activo/informacion_software.html', context)
+    
+def cargar_versiones(request):
+    sistema_operativo_id = request.GET.get('id_version_sistema_op')
+    version_sistema = SistemaOperativo.objects.filter(id=sistema_operativo_id)
+    print("version_sistema:", version_sistema)
+    print("sistema_operativo:", sistema_operativo_id)
+   
+    render(version_sistema,'activo/lista_desplegable_version_sistema.html',{'version_sistema': version_sistema})
+
+        
 
 def informacion_hardware(request, id):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
