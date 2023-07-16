@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #modulos
     'activos',
     'usuarios',
+    'smart_selects'
 ]
 
 #configuración crispy_forms
@@ -143,6 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL= 'inicio'
 LOGIN_REDIRECT_URL= 'index'
 
+#configuracion envio Correo
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -151,3 +153,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'aestebancordobap@gmail.com'
 EMAIL_HOST_PASSWORD = 'gtmrdrpvglliucky'
 
+#configuracion set url de jquery en todas los templates
+JQUERY_URL = True
