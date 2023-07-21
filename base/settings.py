@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     #modulos
     'activos',
     'usuarios',
-    'smart_selects'
 ]
 
 #configuración crispy_forms

@@ -29,8 +29,8 @@ def listado_activos(request):
 def informacion_software(request, id):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     if request.method == 'POST':
-        info_sosftware = InformacionSoftwareForm(request.POST)
-        nueva_info_software = info_sosftware.save(commit=False)
+        info_software = InformacionSoftwareForm(request.POST)
+        nueva_info_software = info_software.save(commit=False)
         tipo_activo = TipoActivo.objects.get(id=id)
         nueva_info_software.id_activo = tipo_activo
         nueva_info_software.user = request.user
@@ -197,4 +197,8 @@ class generar_pdf(View):
         return HttpResponse(pdf, content_type='application/pdf')
     
 def visualizacion_software_hardware(request):
-    return render(request, "activo/software_hardware_pdf.html")
+    software = InformacionSoftware.objects.all()
+
+    print(software)    
+    return render(request,"activo/software_hardware_pdf.html",{'info_software':software})
+#'info_hardware':hardware

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from usuarios.models import  Usuario
-from smart_selects.db_fields import ChainedForeignKey
 
 
 # Create your models here.
@@ -46,20 +45,7 @@ class VersionSistemaOperativo (models.Model):
   
     def __str__(self)->str:
         return  self.version_sistema
-    
-"""version_sistema = ChainedForeignKey(
-        sistema_operativo,
-        chained_field='sistema_operativo',
-        chained_model_field='sistema_operativo',
-        show_all=False,
-        auto_choose=True,
-        sort=True
-    )"""
 
-  
-    
-""" class Meta:
-        verbose_name_plural = 'Versiones del sistema operativo'"""
         
 class Ofimatica (models.Model):
     paquete_ofimatica  = models.CharField (max_length=150,unique=True, verbose_name="Paquete de ofimatica")
@@ -99,11 +85,11 @@ class InformacionSoftware(models.Model):
     version_sistema_op= models.ForeignKey(VersionSistemaOperativo, on_delete=models.CASCADE, verbose_name="Versión de sistema operativo")
     ofimatica= models.ForeignKey(Ofimatica, on_delete=models.CASCADE)        
     version_ofimatica = models.ForeignKey(VersionOfimatica, on_delete=models.CASCADE)
-    antivirus = models.ForeignKey(Antivirus, on_delete = models.CASCADE, null=True, blank=True) #Eliminar propiedades null y blank
-    navegador_1 = models.ForeignKey(Navegador, on_delete = models.CASCADE, null=True, blank=True, related_name="navegador_1") #Eliminar propiedades null y blank
-    navegador_2 = models.ForeignKey(Navegador, on_delete = models.CASCADE, null=True, blank=True, related_name="navegador_2") #Eliminar propiedades null y blank
-    herramienta_cloud = models.ForeignKey (HerramientaCloud, on_delete = models.CASCADE, null=True, blank=True )#Eliminar propiedades null y blank
-    id_activo = models.OneToOneField("TipoActivo", verbose_name="Activo", on_delete=models.CASCADE, null=True, blank = True) #Eliminar propiedades null y blank
+    antivirus = models.ForeignKey(Antivirus, on_delete = models.CASCADE , null=True) #Eliminar propiedades null y blank aceptan valores nulos o en blanco
+    navegador_1 = models.ForeignKey(Navegador, on_delete = models.CASCADE,related_name="navegador_1", null=True) #Eliminar propiedades null y blank
+    navegador_2 = models.ForeignKey(Navegador, on_delete = models.CASCADE,related_name="navegador_2", null=True) #Eliminar propiedades null y blank
+    herramienta_cloud = models.ForeignKey (HerramientaCloud, on_delete = models.CASCADE, null=True) #Eliminar propiedades null y blank
+    id_activo = models.OneToOneField("TipoActivo", verbose_name="Activo", on_delete=models.CASCADE, null=True) #Eliminar propiedades null y blank
     usuario_registro = models.ForeignKey(Usuario, on_delete= models.CASCADE)
     
     def __str__(self):
