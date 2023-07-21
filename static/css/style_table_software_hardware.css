@@ -1,0 +1,55 @@
+.table{
+    margin: 4px,4px,4px,4px;
+}
+.table_row:nth-child(even) {
+    background-color: #e6ca77;
+}
+
+th {
+    margin: 4;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 8px;
+}
+
+h2{
+    margin: 4;
+}
+
+.btn {
+        margin-right: 10px;
+        max-width: 150px;
+        min-width: auto;
+    }
+
+    .dt-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_info {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_paginate {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_length {
+        display: flex;
+        justify-content: center;
+    }
+
+    .dataTables_filter {
+        display: flex;
+        justify-content: center;
+        margin: 20px 10px
+    }
+
+    .dataTables_filter input {
+        text-align: end;
+    }
