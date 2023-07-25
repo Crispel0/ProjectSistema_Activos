@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import TipoActivoForm, InformacionSoftwareForm, InformacionHardwareForm, SistemaOperativoForm, VersionSistemaOperativoForm, OfimaticaForm,VersionOfimaticaForm
-from .models import TipoActivo,InformacionSoftware, InformacionHardware, SistemaOperativo,VersionSistemaOperativo, Ofimatica, VersionOfimatica
+from .models import TipoActivo,InformacionSoftware, Antivirus,InformacionHardware,Navegador ,HerramientaCloud, SistemaOperativo,VersionSistemaOperativo, Ofimatica, VersionOfimatica
 from django.http import HttpResponse
 from .utils import render_to_pdf
 from django.views.generic import View
@@ -184,21 +184,34 @@ def agregar_version_ofimatica (request):
 
 class generar_pdf(View):
     def get(self,request,*args,**kwargs):
-        activo = TipoActivo.objects.all()
-        sofware = InformacionSoftware.objects.all()
+        
+        activo = TipoActivo.objects.filter()
+        """
+        software = InformacionSoftware.objects.all()"""
         hardware = InformacionHardware.objects.all()
-        template_name="informacion_activo.html"
+
+        version_sistema_operativo = VersionSistemaOperativo.objects.all()
+        version_ofimatica = VersionOfimatica.objects.all()
+        antivirus = Antivirus.objects.all()
+        herramienta_Cloud = HerramientaCloud.objects.all()
+        navegador = Navegador.objects.all()
+        
+        
+        
+        template_name="activo/informacion_activo.html"
+        
         data = {
                 'activo': activo,
-                'informacion_software':sofware,
+                #'informacion_software':software,
+                'version_sistema_op' :version_sistema_operativo,
+                'version_ofimatica' : version_ofimatica,
+                'cloud':herramienta_Cloud,
+                'antivirus': antivirus,
+                'navegador':navegador,
                 'informacion_hardware': hardware,
+                
                }
+      
         pdf = render_to_pdf(template_name, data)
         return HttpResponse(pdf, content_type='application/pdf')
-    
-def visualizacion_software_hardware(request):
-    software = InformacionSoftware.objects.all()
 
-    print(software)    
-    return render(request,"activo/software_hardware_pdf.html",{'info_software':software})
-#'info_hardware':hardware

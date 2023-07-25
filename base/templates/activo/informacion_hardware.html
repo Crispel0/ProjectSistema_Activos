@@ -3,6 +3,14 @@
 
 
 {% block content %}
+<header>
+    <style>
+        div{
+            padding: 4px;
+            margin: 4px;
+        }
+    </style>
+</header>
 
 <h1>Formulario de hardware</h1>
 {% for item in consulta %}
@@ -10,59 +18,11 @@
     <p>Activo No. {{item.serie}}</p> 
 
 {% endfor %}
-<form method="POST">
+<form method="POST" style="width: 100%;">
     {% csrf_token %}
     <div class="container border border-2">
-    <div class="row">
-        <div class="col-12 col-md-3 ">
-            <h2>Componente</h2>
-            <br/>
-            <br/>
-            <h5>1. tarjeta madre: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>2. fuente de poder: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h5>3. Procesador: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>4. disco duro 1: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>5. disco duro 2: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>6. memoria ram slot 1: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>7. memoria ram slot 2: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>8. Tarjeta de video: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>8. Monitor: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>9. Mouse: </h5>
-            <br/>
-            <br/>
-            <br/>
-            <h5>10. Teclado: </h5>
-        </div>
-        <div class="col-6 col-md-2">
-            <h2>Marca</h2>
+    <div class="row col-lg-12 col-md-4 col-sm-4">
+        <div>
             <br/>
             {{ form.tarjeta_madre_marca | as_crispy_field }}
             <br/>
@@ -86,9 +46,7 @@
             <br/>
             {{ form.teclado_marca | as_crispy_field }}
         </div>
-        <div class="col-6 col-md-2">
-            <h2>Modelo</h2>
-
+        <div>
             <br/>
             {{ form.tarjeta_madre_modelo | as_crispy_field }}
             <br/>
@@ -99,8 +57,11 @@
             {{ form.disco_duro_1_modelo | as_crispy_field }}
             <br/>
             {{ form.disco_duro_2_modelo | as_crispy_field }}
+            <br/>
             {{ form.ram_slot_1_modelo | as_crispy_field }}
+            <br/>
             {{ form.ram_slot_2_modelo | as_crispy_field }}
+            <br/>
             {{ form.tarjeta_video_modelo | as_crispy_field }}
             <br/>
             {{ form.monitor_modelo | as_crispy_field }}
@@ -108,13 +69,11 @@
             {{ form.mouse_modelo | as_crispy_field }}
             <br/>
             {{ form.teclado_modelo | as_crispy_field }}
-
-            
         </div>
-        <div class="col-6 col-md-2">
-            <h2>Serie</h2>
-
+        <div>
+            <br>
             {{ form.tarjeta_madre_serie | as_crispy_field }}
+            <br>
             {{ form.fuente_poder_serie | as_crispy_field }}
             <br/>
             {{ form.procesador_serie | as_crispy_field }}
@@ -122,8 +81,9 @@
             {{ form.disco_duro_1_capacidad | as_crispy_field }}
             <br/>
             {{ form.disco_duro_2_capacidad | as_crispy_field }}
-        
+            <br>
             {{ form.ram_slot_1_capacidad | as_crispy_field }}
+            <br>
             {{ form.ram_slot_2_capacidad | as_crispy_field }}
             <br/>
             {{ form.tarjeta_video_capacidad | as_crispy_field }}
@@ -131,14 +91,12 @@
             {{ form.monitor_serie | as_crispy_field }}
             <br/>
             {{ form.mouse_serie | as_crispy_field }}
-            
+            <br>
             {{ form.teclado_serie | as_crispy_field }}
-
-
             </div>
-            <div class="col-6 col-md-2">
-            <h2>No aplica</h2>
-            <br/>   
+            <div>
+            <br/>
+            <br/>
             <br/>
             {{ form.tarjeta_madre_no_aplica | as_crispy_field }}
             <br/>         
@@ -149,7 +107,7 @@
             <br/>
             <br/>
             {{ form.procesador_no_aplica |  as_crispy_field }}
-            <br/>
+            
             <br/>
             <br/>
             {{ form.disco_duro_1_no_aplica | as_crispy_field }}

@@ -2,12 +2,14 @@
 {% load crispy_forms_tags %}
 
 <html>
-  <head>
+  <header>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
     <title>Hoja de vida Activo</title>
-  </head>
+  </header>
   <body>
-    <div class="container">
-      <div class="row">
+    <div class="container ">
+      <div class="row col-12">
         <div class="header">
           <img
             src="http://127.0.0.1:8000{% static 'img/logo nuevo 2022.png' %}"
@@ -19,67 +21,222 @@
         <br/>
         <br/>
         <h1 class="text-center">Activo Hardware</h1>
-        <table class="table my-3">
+        <table class="table my-3 table-responsive">
           <thead>
-              <tr>
-                  <th>tarjeta madre</th>
-                  <th>fuente poder</th>
-                  <th>disco duro 1</th>
-                  <th>disco duro 2</th>
-                  <th>memoria ram slot 1</th>
-                  <th>memoria ram slot 2</th>
-                  <th>tarjeta video</th>
-                  <th>monitor</th>
-                  <th>mouse</th>
-                  <th>teclado</th>
-              </tr>
+              <p>{{activo.activo_id}}</p>
+              <th>
+                <tr>
+                    <th>tarjeta madre</th>
+                    <th>fuente poder</th>
+                    <th>disco duro 1</th>
+                    <th>disco duro 2</th>
+                    <th>memoria ram slot 1</th>
+                    <th>memoria ram slot 2</th>
+                    <th>tarjeta video</th>
+                    <th>monitor</th>
+                    <th>mouse</th>
+                    <th>teclado</th>
+                </tr>
+              </th>
+              <th>
+                {% for form in informacion_hardware %}
+                <tr>
+                  <th class="mr-4">modelo</th>
+                  <td>
+                    {{ form.tarjeta_madre_modelo }}</td>
+                  <td>
+                    {{ form.fuente_poder_modelo }}
+                  </td>
+                  <td>
+                  {{ form.procesador_modelo }}
+                  </td>
+                  <td>
+                  {{ form.disco_duro_1_modelo }}
+                  </td>
+                  <td>
+                  {{ form.disco_duro_2_modelo }}
+                  </td>
+                  <td>
+                  {{ form.ram_slot_1_modelo }}
+                  </td>
+                  <td>
+                  {{ form.ram_slot_2_modelo }}
+                  </td>
+                  <td>
+                  {{ form.tarjeta_video_modelo }}
+                  </td>
+                  <td>
+                  {{ form.monitor_modelo }}
+                  </td>
+                  <td>
+                  {{ form.mouse_modelo }}
+                  </td>
+                  <td>
+                    {{ form.teclado_modelo }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="mr-4">marca</th>
+                    <td>
+                      {{ form.tarjeta_madre_marca }}</td>
+                    <td>
+                      {{ form.fuente_poder_marca }}
+                    </td>
+                    <td>
+                    {{ form.procesador_marca }}
+                    </td>
+                    <td>
+                    {{ form.disco_duro_1_marca }}
+                    </td>
+                    <td>
+                    {{ form.disco_duro_2_marca }}
+                    </td>
+                    <td>
+                    {{ form.ram_slot_1_marca }}
+                    </td>
+                    <td>
+                    {{ form.ram_slot_2_marca }}
+                    </td>
+                    <td>
+                    {{ form.tarjeta_video_marca }}
+                    </td>
+                    <td>
+                    {{ form.monitor_marca }}
+                    </td>
+                    <td>
+                    {{ form.mouse_marca }}
+                    </td>
+                    <td>
+                      {{ form.teclado_marca }}
+                    </td>
+                  </tr>
+                <tr>
+                  <th class="mr-4">serie</th>
+                  <td>
+                    {{ form.tarjeta_madre_serie }}</td>
+                  <td>
+                    {{ form.fuente_poder_serie }}
+                  </td>
+                  <td>
+                  {{ form.procesador_serie }}
+                  </td>
+                  <td>
+                  {{ form.disco_duro_1_serie }}
+                  </td>
+                  <td>
+                  {{ form.disco_duro_2_serie }}
+                  </td>
+                  <td>
+                  {{ form.ram_slot_1_serie }}
+                  </td>
+                  <td>serie
+                  {{ form.ram_slot_2_serie }}
+                  </td>
+                  <td>
+                  {{ form.tarjeta_video_serie }}
+                  </td>
+                  <td>
+                  {{ form.monitor_serie }}
+                  </td>
+                  <td>
+                  {{ form.mouse_serie }}
+                  </td>
+                  <td>
+                    {{ form.teclado_serie }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="mr-4"> no aplica</th>
+                  <td>
+                    {{ form.tarjeta_madre_no_aplica }}</td>
+                  <td>
+                    {{ form.fuente_poder_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.procesador_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.disco_duro_1_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.disco_duro_2_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.ram_slot_1_no_aplica }}
+                  </td>
+                  <td>        
+                  {{ form.ram_slot_2_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.tarjeta_video_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.monitor_no_aplica }}
+                  </td>
+                  <td>
+                  {{ form.mouse_no_aplica }}
+                  </td>
+                  <td>
+                    {{ form.teclado_no_aplica }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="mr-4">capacidad</th>
+                  
+                </tr>
+            </th>
+            {% endfor %}
           </thead>
-          <tbody>
-              {% for item in ofimatica %}
-              <tr>
-                  <td>{{forloop.counter}}</td>
-                  <td>{{item.paquete_ofimatica}}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              {% endfor %}  
-          </tbody>
       </table>
-        
+      <br><br>
         <h1>Activo Software</h1>
-        <table class="table my-3">
+        <br><br>
+        <table class="table my-3 table-responsive">
+          <p>{{activo.estado_software}}</p>
           <thead>
-              <tr>
-                  <th>sistema operativo</th>
-                  <th>version sistema op</th>
-                  <th>ofimatica</th>
-                  <th>version ofimatica</th>
-                  <th>antivirus</th>
-                  <th>navegador 1</th>
-                  <th>navegador 2</th>
-                  <th>herramienta cloud</th>
-              </tr>
+            <th>
+                <tr>
+                    <th>sistema operativo</th>
+                    <th>version sistema op</th>
+                    <th>ofimatica</th>
+                    <th>version ofimatica</th>
+                    <th>antivirus</th>
+                    <th>navegador 1</th>
+                    <th>navegador 2</th>
+                    <th>herramienta cloud</th>
+                </tr>
+            </th>
+            <th>
+              <tr>     
+              {% for item_sistema in version_sistema_op %}
+                <tr>
+                    <td>{{item_sistema.sistema_operativo}}</td>
+                    <td>{{item_sistema.version_sistema}}</td>
+                </tr>
+                {% endfor %}  
+
+                {% for item_ofimatica in version_ofimatica %}
+                <tr>
+                  <td>{{item_ofimatica.paquete}}</td>
+                  <td>{{item_ofimatica.version}}</td>
+                </tr>
+                {% endfor %}
+
+                {% for item_antivirus in antivirus %}
+                <tr>
+                  <td>{{item_antivirus.antivirus}}</td>
+                </tr>
+                {% endfor %}
+
+                {% for item_cloud in cloud %}
+                <tr>
+                  <td>{{item_cloud.herramienta}}</td>
+                </tr>
+                {% endfor %}
+              </tr> 
+             </th> 
           </thead>
-          <tbody>
-              {% for item in ofimatica %}
-              <tr>
-                  <td>{{item.counter}}</td>
-                  <td>{{item.paquete_ofimatica}}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              {% endfor %}  
-          </tbody>
+
       </table>
       </div>
     </div>
