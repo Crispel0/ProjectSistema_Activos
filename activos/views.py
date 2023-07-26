@@ -46,16 +46,6 @@ def informacion_software(request, id):
         consulta = TipoActivo.objects.filter(id=id)
         context = {'form': formulario, 'titulo': titulo, 'consulta': consulta, 'rol_usuario':rol_usuario}
         return render(request, 'activo/informacion_software.html', context)
-    
-def cargar_versiones(request):
-    sistema_operativo_id = request.GET.get('id_version_sistema_op')
-    version_sistema = SistemaOperativo.objects.filter(id=sistema_operativo_id)
-    print("version_sistema:", version_sistema)
-    print("sistema_operativo:", sistema_operativo_id)
-   
-    render(version_sistema,'activo/lista_desplegable_version_sistema.html',{'version_sistema': version_sistema})
-
-        
 
 def informacion_hardware(request, id):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
@@ -182,7 +172,7 @@ def agregar_version_ofimatica (request):
     context = {'titulo':"Agregar versión ofimatica", 'form':form, 'rol_usuario':rol_usuario}
     return render (request, 'administrador/agregar_version_ofimatica.html',context)
 
-class generar_pdf(View):
+class generar_pdf(View,id):
     def get(self,request,*args,**kwargs):
         
         activo = TipoActivo.objects.filter()
@@ -190,7 +180,7 @@ class generar_pdf(View):
         software = InformacionSoftware.objects.all()"""
         hardware = InformacionHardware.objects.all()
 
-        version_sistema_operativo = VersionSistemaOperativo.objects.all()
+        version_sistema_operativo = VersionSistemaOperativo.objects.filter(id = activo)
         version_ofimatica = VersionOfimatica.objects.all()
         antivirus = Antivirus.objects.all()
         herramienta_Cloud = HerramientaCloud.objects.all()
@@ -211,6 +201,7 @@ class generar_pdf(View):
                 'informacion_hardware': hardware,
                 
                }
+        print(navegador)
       
         pdf = render_to_pdf(template_name, data)
         return HttpResponse(pdf, content_type='application/pdf')

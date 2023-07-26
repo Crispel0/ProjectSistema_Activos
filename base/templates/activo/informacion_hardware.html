@@ -3,14 +3,22 @@
 
 
 {% block content %}
-<header>
-    <style>
-        div{
-            padding: 4px;
-            margin: 4px;
-        }
-    </style>
-</header>
+<style>
+        @media (max-width: 724px) {
+    h1{
+        font-size: 15px;
+       text-align: center;
+    }
+    p{
+        font-size: 13px;
+    }
+    .form-label{
+        font-size: 13px;
+    }
+    }
+    
+    
+</style>
 
 <h1>Formulario de hardware</h1>
 {% for item in consulta %}
@@ -20,126 +28,121 @@
 {% endfor %}
 <form method="POST" style="width: 100%;">
     {% csrf_token %}
-    <div class="container border border-2">
-    <div class="row col-lg-12 col-md-4 col-sm-4">
-        <div>
-            <br/>
-            {{ form.tarjeta_madre_marca | as_crispy_field }}
-            <br/>
-            {{ form.fuente_poder_marca | as_crispy_field }}
-            <br/>
-            {{ form.procesador_marca | as_crispy_field }}
-            <br/>
-            {{ form.disco_duro_1_marca | as_crispy_field }}
-            <br/>
-            {{ form.disco_duro_2_marca | as_crispy_field }}
-            <br/>
-            {{ form.ram_slot_1_marca | as_crispy_field }}
-            <br/>
-            {{ form.ram_slot_2_marca | as_crispy_field }}
-            <br/>
-            {{ form.tarjeta_video_marca | as_crispy_field }}
-            <br/>
-            {{ form.monitor_marca | as_crispy_field }}
-            <br/>
-            {{ form.mouse_marca | as_crispy_field }}
-            <br/>
-            {{ form.teclado_marca | as_crispy_field }}
+    <div class="container border ">
+    <div class="row">
+        <table class="table table-responsive">
+            <div class="col-md-6 col-sm-6">
+            <tr >
+            <td>            {{ form.tarjeta_madre_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.fuente_poder_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.procesador_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.disco_duro_1_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.disco_duro_2_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.ram_slot_1_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.ram_slot_2_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.tarjeta_video_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.monitor_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.mouse_marca | as_crispy_field }}
+            </td>
+            <td>            {{ form.teclado_marca | as_crispy_field }}
+            </td>
+            </tr>
+        <tr>
+            <td>             {{ form.tarjeta_madre_modelo | as_crispy_field }}
+
+            </td>
+            <td>             {{ form.fuente_poder_modelo | as_crispy_field }}
+
+            </td>
+            <td>             {{ form.procesador_modelo | as_crispy_field }}
+
+            </td>
+            <td>             {{ form.disco_duro_1_modelo | as_crispy_field }}
+
+
+            <td>   {{ form.disco_duro_2_modelo | as_crispy_field }}                      </td>             
+
+            </td>
+            <td>               {{ form.ram_slot_1_modelo | as_crispy_field }}
+
+            </td>
+            <td>                            {{ form.ram_slot_2_modelo | as_crispy_field }}
+
+            </td>
+            <td>                           {{ form.tarjeta_video_modelo | as_crispy_field }}
+
+            </td>
+            <td>                           {{ form.monitor_modelo | as_crispy_field }}
+
+            </td>
+            <td>                          {{ form.mouse_modelo | as_crispy_field }}
+
+            </td>
+            <td>                {{ form.teclado_modelo | as_crispy_field }}
+
+            </td>
+        </tr>
         </div>
-        <div>
-            <br/>
-            {{ form.tarjeta_madre_modelo | as_crispy_field }}
-            <br/>
-            {{ form.fuente_poder_modelo | as_crispy_field }}
-            <br/>
-            {{ form.procesador_modelo | as_crispy_field }}
-            <br/>
-            {{ form.disco_duro_1_modelo | as_crispy_field }}
-            <br/>
-            {{ form.disco_duro_2_modelo | as_crispy_field }}
-            <br/>
-            {{ form.ram_slot_1_modelo | as_crispy_field }}
-            <br/>
-            {{ form.ram_slot_2_modelo | as_crispy_field }}
-            <br/>
-            {{ form.tarjeta_video_modelo | as_crispy_field }}
-            <br/>
-            {{ form.monitor_modelo | as_crispy_field }}
-            <br/>
-            {{ form.mouse_modelo | as_crispy_field }}
-            <br/>
-            {{ form.teclado_modelo | as_crispy_field }}
-        </div>
-        <div>
-            <br>
-            {{ form.tarjeta_madre_serie | as_crispy_field }}
-            <br>
-            {{ form.fuente_poder_serie | as_crispy_field }}
-            <br/>
-            {{ form.procesador_serie | as_crispy_field }}
-            <br/>
-            {{ form.disco_duro_1_capacidad | as_crispy_field }}
-            <br/>
-            {{ form.disco_duro_2_capacidad | as_crispy_field }}
-            <br>
-            {{ form.ram_slot_1_capacidad | as_crispy_field }}
-            <br>
-            {{ form.ram_slot_2_capacidad | as_crispy_field }}
-            <br/>
-            {{ form.tarjeta_video_capacidad | as_crispy_field }}
-            <br/>
-            {{ form.monitor_serie | as_crispy_field }}
-            <br/>
-            {{ form.mouse_serie | as_crispy_field }}
-            <br>
-            {{ form.teclado_serie | as_crispy_field }}
-            </div>
-            <div>
-            <br/>
-            <br/>
-            <br/>
-            {{ form.tarjeta_madre_no_aplica | as_crispy_field }}
-            <br/>         
-            <br/>
-            <br/>
-            {{ form.tarjeta_madre_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.procesador_no_aplica |  as_crispy_field }}
+        <div class="col-md-6 col-sm-6">
+        
+            <tr>
             
-            <br/>
-            <br/>
-            {{ form.disco_duro_1_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.disco_duro_2_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.ram_slot_1_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.ram_slot_2_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.tarjeta_video_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.monitor_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.mouse_no_aplica | as_crispy_field }}
-            <br/>
-            <br/>
-            <br/>
-            {{ form.teclado_no_aplica | as_crispy_field }}
-            </div>
+            <td>            {{ form.tarjeta_madre_serie | as_crispy_field }}
+            </td>
+            <td>            {{ form.fuente_poder_serie | as_crispy_field }}
+            </td>
+            <td>            {{ form.procesador_serie | as_crispy_field }}
+            </td>
+            <td>           {{ form.monitor_serie | as_crispy_field }} 
+            </td>
+            <td>            {{ form.mouse_serie | as_crispy_field }} 
+            </td>
+            <td>            {{ form.teclado_serie | as_crispy_field }} 
+            </td>
+            <td>            {{ form.disco_duro_1_capacidad | as_crispy_field }} 
+            </td>
+            <td>            {{ form.disco_duro_2_capacidad | as_crispy_field }} 
+            </td>
+            <td>            {{ form.ram_slot_1_capacidad | as_crispy_field }}
+            </td>
+            <td>            {{ form.ram_slot_2_capacidad | as_crispy_field }}
+            </td>
+            <td>            {{ form.tarjeta_video_capacidad | as_crispy_field }}
+            </td>
+        </tr>
+        <tr>
+            <td>            {{ form.tarjeta_madre_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.procesador_no_aplica |  as_crispy_field }}
+            </td>
+            <td>            {{ form.disco_duro_1_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.disco_duro_2_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.ram_slot_1_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.ram_slot_2_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.tarjeta_video_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.monitor_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.mouse_no_aplica | as_crispy_field }}
+            </td>
+            <td>            {{ form.teclado_no_aplica | as_crispy_field }}
+            </td>
+        </tr>
+        </div>
+        </table>
     </div>
     <button type="submit" class="my-2 btn btn-success">Guardar</button>
     <a href="{% url 'listado_activos' %}" class="my-2 btn btn-danger">Volver</a>
