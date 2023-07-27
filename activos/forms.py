@@ -28,6 +28,36 @@ class InformacionHardwareForm(ModelForm):
     class Meta:
         model = InformacionHardware
         fields = '__all__'
+
+        
+    def __init__(self, *args,**kwargs):
+        super().__init__(*args,**kwargs)
+        field_classes = {
+        'tarjeta_madre_marca':'tarjeta_madre','tarjeta_madre_modelo':'tarjeta_madre','tarjeta_madre_serie':'tarjeta_madre',
+        'fuente_poder_marca':'fuente_poder','fuente_poder_modelo':'fuente_poder','fuente_poder_serie':'fuente_poder','fuente_poder_capacidad':'fuente_poder',
+        'procesador_marca':'procesador','procesador_modelo':'procesador','procesador_serie':'procesador',
+        'disco_duro_1_marca': 'disco_duro_1','disco_duro_1_modelo':'disco_duro_1','disco_duro_1_serie':'disco_duro_1','disco_duro_1_capacidad':'disco_duro_1',
+        'disco_duro_2_marca':'disco_duro_2','disco_duro_2_modelo':'disco_duro_2','disco_duro_2_serie':'disco_duro_2','disco_duro_2_capacidad':'disco_duro_2',
+        'ram_slot_1_marca':'ram_slot_1','ram_slot_1_modelo':'ram_slot_1','ram_slot_1_serie':'ram_slot_1','ram_slot_1_capacidad':'ram_slot_1',
+        'ram_slot_2_marca':'ram_slot_2','ram_slot_2_modelo':'ram_slot_2','ram_slot_2_serie':'ram_slot_2','ram_slot_2_capacidad':'ram_slot_2',
+        'tarjeta_video_marca':'tarjeta_video','tarjeta_video_modelo':'tarjeta_video','tarjeta_video_serie':'tarjeta_video', 'tarjeta_video_capacidad':'tarjeta_video',
+        'monitor_marca':'monitor','monitor_modelo':'monitor', 'monitor_serie':'monitor',
+        'mouse_marca':'mouse','mouse_modelo':'mouse','mouse_serie':'mouse',
+        'teclado_marca':'teclado','teclado_modelo':'teclado', 'teclado_serie':'teclado'
+
+
+    }
+        for field_name, field in self.fields.items():
+            if field_name in field_classes:
+                class_name = field_classes[field_name]
+                classes = {
+                    'class': class_name
+                }
+                field.widget.attrs.update(classes)
+
+
+    
+
   
     
 class SistemaOperativoForm(ModelForm):

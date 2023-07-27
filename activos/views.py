@@ -172,7 +172,7 @@ def agregar_version_ofimatica (request):
     context = {'titulo':"Agregar versión ofimatica", 'form':form, 'rol_usuario':rol_usuario}
     return render (request, 'administrador/agregar_version_ofimatica.html',context)
 
-class generar_pdf(View,id):
+class generar_pdf(View):
     def get(self,request,*args,**kwargs):
         
         activo = TipoActivo.objects.filter()
@@ -180,7 +180,7 @@ class generar_pdf(View,id):
         software = InformacionSoftware.objects.all()"""
         hardware = InformacionHardware.objects.all()
 
-        version_sistema_operativo = VersionSistemaOperativo.objects.filter(id = activo)
+        version_sistema_operativo = VersionSistemaOperativo.objects.all()
         version_ofimatica = VersionOfimatica.objects.all()
         antivirus = Antivirus.objects.all()
         herramienta_Cloud = HerramientaCloud.objects.all()
@@ -200,8 +200,7 @@ class generar_pdf(View,id):
                 'navegador':navegador,
                 'informacion_hardware': hardware,
                 
-               }
-        print(navegador)
+        }
       
         pdf = render_to_pdf(template_name, data)
         return HttpResponse(pdf, content_type='application/pdf')
