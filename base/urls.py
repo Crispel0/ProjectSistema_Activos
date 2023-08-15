@@ -20,8 +20,10 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from .views import salir
 
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/' , admin.site.urls),
     path('usuario/',include('usuarios.urls')),
     path('activo/',include('activos.urls')),
     path('',auth_views.LoginView.as_view(),name='login'),
