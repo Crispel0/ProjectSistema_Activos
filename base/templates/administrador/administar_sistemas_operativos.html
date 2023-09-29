@@ -19,8 +19,8 @@
                     <tr>
                         <td>{{forloop.counter}}</td>
                         <td>{{item.nombre_sistema}}</td>
-                        <td><a href="{% url 'editar_sistema_operativo' item.id  %}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
-                        <td><a href="{% url 'eliminar_sistema_operativo' item.id %}" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
+                        <td><a class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" onclick="showSweetAlert('editar', 'agregar_version_sistema_operativo/{{ item.id }}')" title="Editar"></i><a></td>
+                        <td><a class="btn btn-danger"><i class="fas fa-trash-alt" onclick="showSweetAlert('eliminar', 'eliminar_sistema_operativo/{{ item.id }}')" title="Eliminar"></i></a></td>
                     </tr>
                     {% endfor %}  
                 </tbody>
@@ -44,19 +44,18 @@
                         <td>{{forloop.counter}}</td> 
                         <td>{{item.version_sistema}}</td>
                         <td>{{item.sistema_operativo}}</td>
-                        <td><a href="{% url 'editar_version_sistema_operativo' item.id %}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary"></i><a>
-                        <a href="{% url 'eliminar_version_sistema_operativo' item.id %}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a class="btn btn-primary trigger-sweetalert" onclick="showSweetAlert('editar' , 'editar_version_sistema_operativo/{{ item.id }} ')"><i class="fa-solid fa-pen-to-square text-bg-primary"></i><a>
+                        <a  class="btn btn-danger trigger-sweetalert" onclick="showSweetAlert('eliminar' , 'eliminar_version_sistema_operativo/{{ item.id }} ')"><i class="fas fa-trash-alt"></i></a></td>
                         </td>
                     {% endfor %}  
-                    </tr>
+              
+                    </tr> 
                 </tbody>
             </table>
-            <a href="{% url 'agregar_version_sistema_operativo' %}" class="btn btn-success">Agregar Versión operativo</a>
+            <a class="btn btn-success">Agregar Versión operativo</a>
         </div>
     </div>
 </div>
-
-
 
 {% include 'partials/js.html' %}
 {% endblock %}  

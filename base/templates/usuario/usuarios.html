@@ -47,9 +47,9 @@
         
         
       <td>
-        <a class="btn btn-primary" href = "{% url 'editar_usuario' usuario.id %}">
+        <a class="btn btn-primary" href = "{% url 'editar_usuario' usuario.id %}" onclick="showSweetAlet('editar', '{{ usuario.id }}')">
           <i class="fas fa-edit" title="Editar"></i></a>
-        <a href="{% url 'usuarios_eliminar' usuario.id %}" class="btn btn-danger">
+        <a href="{% url 'usuarios_eliminar' usuario.id %}" class="btn btn-danger"  onclick="showSweetAlet('eliminar', '{{ usuario.id }}')">
         <i class="fas fa-trash-alt"></i></a>
       </td>
       
@@ -69,7 +69,6 @@
 {% endblock content %}
 
 {% block javascript %}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% endblock javascript %}
 
 

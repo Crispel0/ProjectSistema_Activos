@@ -13,3 +13,4 @@ admin.site.register(Antivirus)
 admin.site.register(Navegador)
 admin.site.register (HerramientaCloud)
 admin.site.register (InformacionHardware)
+

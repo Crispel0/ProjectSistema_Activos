@@ -12,8 +12,8 @@
         <form method="POST">
             {% csrf_token %}
             {{form|crispy}}
-        <button type="submit" class="btn btn-success">Guardar </button>
-        <a class="btn btn-danger" href="{% url 'administrar_paquete_ofimatica' %}">Volver</a>
+        <button type="submit" class="btn btn-success" onclick="showSweetAlert('agregar' , 'administar_ofimatica/{{item.id}}')">Guardar </button>
+        <a class="btn btn-danger" onclick="showSweetAlert('eliminar' , '../')">Volver</a>
         </form>
     </div>
 </div>

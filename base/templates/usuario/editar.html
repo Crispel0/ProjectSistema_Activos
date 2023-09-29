@@ -18,10 +18,11 @@
             {{form  | crispy}}
             <div class="container py-3">
                 <div class="d-grid gap-2 d-md-block">
-                    <button class="mt-2 btn btn-success">
+                    <button class="mt-2 btn btn-success"  onclick="showSweetAlert('agregar' ,'usuarios')">
                         Guardar
+                    <a>
                     </button>
-                    <a href="{% url 'usuarios' %}" class="mt-2 btn btn-danger">
+                    <a  class="mt-2 btn btn-danger" onclick="showSweetAlert('eliminar' ,'../../usuarios/')">
                         Volver
                     </a>
                     <!--this template need saw after-->

@@ -61,6 +61,7 @@ def informacion_hardware(request, id):
 
 
 def administar_software(request):
+    
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     sistemas_operativos = SistemaOperativo.objects.filter(estado=True)
     versiones_sistemas_operativos = VersionSistemaOperativo.objects.filter(estado=True)
@@ -148,6 +149,21 @@ def administrar_ofimatica (request):
     }
     return render (request, 'administrador/administar_paquete_ofimatica.html', context)
 
+def editar_paquete_ofimatica(request):
+    
+    ofimatica = Ofimatica.objects.filter(id= id)
+    version_ofimatica = VersionOfimatica.objects.filter(id=id)
+    rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+            
+    context = {
+        
+        'titulo':"Ofimatica",
+        'ofimatica':ofimatica,
+        'version_ofimatica':version_ofimatica,
+        'rol_usuario':rol_usuario
+    }    
+    return render(request , "administrador/editar_paquete_ofimatica.html",context)
+
 def agregar_paquete_ofimatica (request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     if request.method == 'GET':
@@ -166,7 +182,7 @@ def agregar_version_ofimatica (request):
         form = VersionOfimaticaForm()
     else:
         version = VersionOfimaticaForm(request.POST)
-        if version.is_valid:
+        if version.is_valid():
             version.save()
         return redirect ('administrar_paquete_ofimatica')
     context = {'titulo':"Agregar versión ofimatica", 'form':form, 'rol_usuario':rol_usuario}
@@ -176,8 +192,8 @@ class generar_pdf(View):
     def get(self,request,*args,**kwargs):
         
         activo = TipoActivo.objects.filter()
-        """
-        software = InformacionSoftware.objects.all()"""
+    
+        software = InformacionSoftware.objects.all()
         hardware = InformacionHardware.objects.all()
 
         version_sistema_operativo = VersionSistemaOperativo.objects.all()
@@ -192,7 +208,7 @@ class generar_pdf(View):
         
         data = {
                 'activo': activo,
-                #'informacion_software':software,
+                'informacion_software':software,
                 'version_sistema_op' :version_sistema_operativo,
                 'version_ofimatica' : version_ofimatica,
                 'cloud':herramienta_Cloud,

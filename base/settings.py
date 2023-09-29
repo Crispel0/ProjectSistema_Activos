@@ -125,6 +125,8 @@ TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -150,7 +152,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Bienvenido Control Activos ",
     # Copyright on the footer
     "copyright": "contraloría departamental del Tolima",
-    "search_model": ["auth.User", "auth.Group", "auth.activos"],
+    "search_model": ["auth.User", "auth.Group", "auth.Activo"],
     "user_avatar": None,
     ############
     # Top Menu #
@@ -197,10 +199,15 @@ JAZZMIN_SETTINGS = {
         "auth.user": "collapsible",
         "auth.group": "vertical_tabs",
     },
+    "custom_css": "static/css/styles_jazzmin.css",
+    "show_ui_builder": True,
 }
 JAZZMIN_UI_TWEAKS = {
     "theme":"cerulean",
     "dark_mode_theme": "darkly",
+    "navbar_fixed": True,
+    "sidebar_nav_small_text": True,
+    "sidebar_nav_compact_style": True,
 }
 
 # Default primary key field type
@@ -223,3 +230,5 @@ EMAIL_HOST_PASSWORD = 'gtmrdrpvglliucky'
 
 #configuracion set url de jquery en todas los templates
 JQUERY_URL = True
+
+

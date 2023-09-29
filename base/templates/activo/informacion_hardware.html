@@ -101,8 +101,8 @@
 </table>
 <script src="{% static 'js/active_deactivate_input.js' %}"> </script>
 </div>
-    <button type="submit" class="my-2 btn btn-success">Guardar</button>
-    <a href="{% url 'listado_activos' %}" class="my-2 btn btn-danger">Volver</a>
+    <button type="submit" class="my-2 btn btn-success" onclick="showSweetAlert('agregar' ,'../listado/{{item.id}}')">Guardar</button>
+    <a  class="my-2 btn btn-danger" onclick="showSweetAlert('eliminar' ,'../listado/')">Volver</a>
 </form>
 {% endblock %}  
 

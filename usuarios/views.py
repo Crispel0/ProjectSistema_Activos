@@ -80,7 +80,6 @@ def usuarios_editar(request, pk):
     usuario= Usuario.objects.get(id=pk)
     if request.method == "POST":
         form= UsuarioForm(request.POST, instance=usuario)
-        print (form)
         if form.is_valid():
             form.save()
             return redirect('usuarios')

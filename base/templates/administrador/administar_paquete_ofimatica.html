@@ -19,8 +19,8 @@
                     <tr>
                         <td>{{forloop.counter}}</td>
                         <td>{{item.paquete_ofimatica}}</td>
-                        <td><a href="#" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
-                        <td><a href="#" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
+                        <td><a onclick="showSweetAlert('editar' ,'editar_paquete_ofimatica/{{item.id}}')" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
+                        <td><a onclick="showSweetAlert('eliminar' ,'eliminar_paquete_ofimatica/{{item.id}}')" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
                     </tr>
                     {% endfor %}  
                 </tbody>
@@ -43,8 +43,8 @@
                         <td>{{forloop.counter}}</td>
                         <td>{{item.version}}</td>
                         <td>{{item.paquete}}</td>
-                        <td><a href="#" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
-                        <td><a href="#" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
+                        <td><a onclick="showSweetAlert('editar' ,'editar_version_paquete_ofimatica/{{item.id}}')" class="btn btn-primary"><i class="fa-solid fa-pen-to-square text-bg-primary" title="Editar"></i><a></td>
+                        <td><a onclick="showSweetAlert('eliminar' ,'eliminar_version_paquete_ofimatica/{{item.id}}')" class="btn btn-danger"><i class="fas fa-trash-alt" title="Eliminar"></i></a></td>
                     </tr>
                     {% endfor %}  
                 </tbody>
