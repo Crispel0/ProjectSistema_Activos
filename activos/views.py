@@ -40,7 +40,7 @@ def informacion_software(request, id):
         tipo_activo.save()
 
         return redirect('listado_activos')
-    else:
+    else: #here is necessary change the code
         formulario = InformacionSoftwareForm()
         titulo = "Información de software"
         consulta = TipoActivo.objects.filter(id=id)
@@ -76,6 +76,7 @@ def administar_software(request):
 
 def agregar_sistema_operativo (request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+    
     if request.method == 'GET':
         form = SistemaOperativoForm()
     else:
@@ -88,6 +89,8 @@ def agregar_sistema_operativo (request):
 
 def editar_sistema_operativo (request, pk):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+    sistema_operativo =  SistemaOperativo.objects.select_related().get(id=pk)
+    print(sistema_operativo)
     sistema = SistemaOperativo.objects.get(id=pk)
     if request.method == "POST":
         form= SistemaOperativoForm(request.POST, instance=sistema)
@@ -99,12 +102,14 @@ def editar_sistema_operativo (request, pk):
     context = {'titulo':"Editar sistema operativo", 'form':form, 'rol_usuario':rol_usuario, 'titulo_vista':"Editar sistema operativo"}
     return render (request, 'administrador/agregar_sistema_operativo.html',context)
 
-def eliminar_sistema_operativo(request, pk): 
+def eliminar_sistema_operativo(request,pk): 
     SistemaOperativo.objects.filter(id=pk).update(
             estado='False'
         )
-    messages.success(request, "Accion realizada correctamente!")
+    mensaje = messages.success(request, "Accion realizada correctamente!")
+    print(mensaje)
     return redirect('administar_software')
+
 
 def agregar_version_sistema_operativo (request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
@@ -149,21 +154,6 @@ def administrar_ofimatica (request):
     }
     return render (request, 'administrador/administar_paquete_ofimatica.html', context)
 
-def editar_paquete_ofimatica(request):
-    
-    ofimatica = Ofimatica.objects.filter(id= id)
-    version_ofimatica = VersionOfimatica.objects.filter(id=id)
-    rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
-            
-    context = {
-        
-        'titulo':"Ofimatica",
-        'ofimatica':ofimatica,
-        'version_ofimatica':version_ofimatica,
-        'rol_usuario':rol_usuario
-    }    
-    return render(request , "administrador/editar_paquete_ofimatica.html",context)
-
 def agregar_paquete_ofimatica (request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     if request.method == 'GET':
@@ -175,6 +165,48 @@ def agregar_paquete_ofimatica (request):
         return redirect ('administrar_paquete_ofimatica')
     context = {'titulo':"Agregar Paquete ofimatica", 'form':form, 'rol_usuario':rol_usuario}
     return render (request, 'administrador/agregar_paquete_ofimatica.html', context)
+
+def editar_paquete_ofimatica (request, pk):
+    rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+    
+    ofimatica = Ofimatica.objects.get(id=pk)
+    if request.method == "POST":
+        form= OfimaticaForm(request.POST, instance=ofimatica)
+        if form.is_valid():
+            form.save()
+            return redirect('administrar_paquete_ofimatica')
+    else:
+        form= OfimaticaForm(instance=ofimatica)
+    context = {'titulo':"Editar Paquete Ofimatica", 'form':form, 'rol_usuario':rol_usuario, 'titulo_vista':"Editar paquete Ofimatica"}
+    return render (request, 'administrador/agregar_paquete_ofimatica.html',context)
+
+def eliminar_paquete_ofimatica(request, pk): 
+    Ofimatica.objects.filter(id=pk).update(
+            estado='False'
+        )
+    messages.success(request, "Accion realizada correctamente!")
+    return redirect('administrar_paquete_ofimatica')
+
+def editar_version_paquete_ofimatica (request, pk):
+    rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+    
+    ofimatica = VersionOfimatica.objects.get(id=pk)
+    if request.method == "POST":
+        form= VersionOfimaticaForm(request.POST, instance=ofimatica)
+        if form.is_valid():
+            form.save()
+            return redirect('administrar_paquete_ofimatica')
+    else:
+        form= OfimaticaForm(instance=ofimatica)
+    context = {'titulo':"Editar Paquete Ofimatica", 'form':form, 'rol_usuario':rol_usuario, 'titulo_vista':"Editar paquete Ofimatica"}
+    return render (request, 'administrador/agregar_version_ofimatica.html',context)
+
+def eliminar_version_paquete_ofimatica(request, pk): 
+    VersionOfimatica.objects.filter(id=pk).update(
+            estado='False'
+        )
+    messages.success(request, "Accion realizada correctamente!")
+    return redirect('administrar_paquete_ofimatica')
 
 def agregar_version_ofimatica (request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 

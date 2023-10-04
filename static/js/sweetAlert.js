@@ -1,4 +1,12 @@
- async function showSweetAlert(accion, url) {
+
+const boton = document.querySelector("btn btn-success")
+
+boton.addEventListener("click",  prevenirEvent() )
+  function prevenirEvent(e) {
+    e.preventDefault()
+}
+
+async function showSweetAlert(accion, url) {
  let title, text, icon;
 
   if (accion === 'editar') {
@@ -19,13 +27,22 @@
   const result = await Swal.fire({
     title: title,
     text: text,
-    icon: 'question',
+    icon: icon,
     showCancelButton: true,
     confirmButtonText: 'Yes',
     cancelButtonText: 'No'
 });
 
 if (result.isConfirmed) {
-    window.location.href = url;
+
+  window.location.href = url;
+
 }
 }
+
+
+
+
+
+
+

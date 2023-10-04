@@ -1,5 +1,9 @@
-{% extends 'partials/body.html' %} {% load crispy_forms_tags %} {% load
-crispy_forms_field %} {% block content %}
+{% extends 'partials/body.html' %} {% load crispy_forms_tags %} {% load crispy_forms_field %}
+{% load static %} {% block content %}
+<head>
+   <script> src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"</script>
+   <script src="{% static 'js/listas_desplegables.js' %}"></script>
+</head>
 <div class="row">
   <div class="m-auto col-sm-12 col-md-6 col-lg-4">
     <div class="card p-3">
@@ -11,7 +15,7 @@ crispy_forms_field %} {% block content %}
       <p>Activo No. {{item.serie}}</p>
       {% endfor %}
       <div class="card-text">
-        <form method="POST" role="form" id="form" data-versions-url="{% url 'ajax_cargador_versiones' %}">
+        <form method="POST" role="form" id="form">
           {% csrf_token %}
           {{form | crispy}}
           <button class="btn btn-success" type="submit">Guardar</button>
@@ -23,23 +27,5 @@ crispy_forms_field %} {% block content %}
     </div>
   </div>
 </div>
-
-<script>
-  $("#id_sistema_operativo").change(function() {
-    const url= $("#form").attr("data-versions-url");
-    const id_version_sistema_op = $(this).val();
-
-    $.ajax({
-        url: url,
-        data:{
-            'id_version_sistema_op': id_version_sistema_op
-        },
-        success: function(data){
-            console.log(data)
-            $('id_sistema_operativo').html(data)
-        }
-    })
-  })
-</script>
 
 {% endblock %} {% include 'partials/footer.html' %}

@@ -49,13 +49,17 @@ class VersionSistemaOperativo (models.Model):
         
 class Ofimatica (models.Model):
     paquete_ofimatica  = models.CharField (max_length=150,unique=True, verbose_name="Paquete de ofimatica")
+    estado = models.BooleanField (default=True, verbose_name="Estado")
 
     def __str__(self):
        return self.paquete_ofimatica
 
 class VersionOfimatica(models.Model):
+    
     version = models.CharField (max_length= 150, unique=True, verbose_name = "Version del paquete ofimatica")
     paquete = models.ForeignKey(Ofimatica, on_delete=models.CASCADE)
+    estado = models.BooleanField (default=True, verbose_name="Estado")
+
     
     def __str__(self):
         return "%s - %s" %(self.paquete, self.version)

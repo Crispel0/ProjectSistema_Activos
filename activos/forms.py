@@ -28,6 +28,7 @@ class InformacionHardwareForm(ModelForm):
     class Meta:
         model = InformacionHardware
         fields = '__all__'
+        exclude=['sistema_operativo','version_sitema_op']
 
         
     def __init__(self, *args,**kwargs):
@@ -78,6 +79,7 @@ class OfimaticaForm(ModelForm):
     class Meta:
         model = Ofimatica
         fields = '__all__'
+        exclude=['estado']
 
 
         
@@ -85,3 +87,4 @@ class VersionOfimaticaForm(ModelForm):
     class Meta:
         model = VersionOfimatica
         fields = '__all__'
+        exclude=['estado']
