@@ -6,6 +6,7 @@ from .utils import render_to_pdf
 from django.views.generic import View
 from usuarios.models import Usuario
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -13,10 +14,10 @@ def listado_activos(request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     if request.method == 'POST':
         nuevo_activo_form = TipoActivoForm(request.POST)
-        nuevo_activo = nuevo_activo_form.save(commit=False)
-        nuevo_activo.usuario_registra = request.user.usuario
-        nuevo_activo.save()
-        
+        if nuevo_activo_form.is_valid():
+            nuevo_activo = nuevo_activo_form.save(commit=False)
+            nuevo_activo.usuario_registra = request.user.usuario
+            nuevo_activo.save()
         return redirect (listado_activos)
     else:  
         consulta_activos = TipoActivo.objects.all()
@@ -30,16 +31,31 @@ def informacion_software(request, id):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     if request.method == 'POST':
         info_software = InformacionSoftwareForm(request.POST)
-        nueva_info_software = info_software.save(commit=False)
-        tipo_activo = TipoActivo.objects.get(id=id)
-        nueva_info_software.id_activo = tipo_activo
-        nueva_info_software.user = request.user
-        nueva_info_software.registrado = True
-        nueva_info_software.save()
-        tipo_activo.estado_software = True
-        tipo_activo.save()
+        if info_software.is_valid():
+            tipo_activo = TipoActivo.objects.get(id=id)
+            new_info_software = InformacionSoftware.objects.filter(id_activo=tipo_activo).first()
+            if new_info_software:
+                # If the object already exists, update its attributes
+                new_info_software.usuario_registro =  new_info_software.usuario_registro
+                new_info_software.id_activo = new_info_software.id_activo
+                new_info_software.user = request.user
+                new_info_software.user =True
+                new_info_software.id_activo.id = new_info_software.id_activo.id
+                # Update other attributes as needed
+                new_info_software.save()
+            else:
+                nueva_info_software = info_software.save(commit=False)
+                tipo_activo = TipoActivo.objects.get(id=id)
+                nueva_info_software.id_activo = tipo_activo
+                nueva_info_software.usuario_registro = rol_usuario  
+                nueva_info_software.user = request.user
+                nueva_info_software.registrado = True
+                nueva_info_software.save()
+                tipo_activo.estado_software = True
+                tipo_activo.save()
 
         return redirect('listado_activos')
+    
     else: #here is necessary change the code
         formulario = InformacionSoftwareForm()
         titulo = "Información de software"
@@ -49,16 +65,45 @@ def informacion_software(request, id):
 
 def informacion_hardware(request, id):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
-    formulario = InformacionHardwareForm()
-    titulo = "Información de Hardware"
-    consulta = TipoActivo.objects.filter(id=id)
-    context = {'form':formulario,
-               'titulo':titulo,
-               'consulta':consulta,
-               'rol_usuario':rol_usuario
-               }
-    return render(request, 'activo/informacion_hardware.html', context)
+    if request.method == 'POST':
+        info_hardware = InformacionHardwareForm(request.POST)
+        if info_hardware.is_valid():
+            existing_info_hardware = InformacionHardware.objects.filter(id_activo=tipo_activo).first()
 
+            if existing_info_hardware:
+                # If the object already exists, update its attributes
+                existing_info_hardware.id_activo = nueva_info_hardware.id_activo
+                existing_info_hardware.usuario_registro =  existing_info_hardware.usuario_registro
+                existing_info_hardware.user = request.user
+                existing_info_hardware.user =True
+                existing_info_hardware.id_activo.id = existing_info_hardware.id_activo.id
+
+                # Update other attributes as needed
+                existing_info_hardware.save()
+            else: 
+                nueva_info_hardware = info_hardware.save(commit=False)
+                tipo_activo = TipoActivo.objects.get(id=id)
+                nueva_info_hardware.id_activo = tipo_activo
+                nueva_info_hardware.usuario_registro = rol_usuario  
+                nueva_info_hardware.user = request.user
+                nueva_info_hardware.user = True
+                tipo_activo.estado_software = True
+                tipo_activo.save()
+                nueva_info_hardware.save()
+           
+        return redirect('listado_activos')
+
+    else:
+        rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+        formulario = InformacionHardwareForm()
+        titulo = "Información de Hardware"
+        consulta = TipoActivo.objects.filter(id=id)
+        context = {'form':formulario,
+                'titulo':titulo,
+                'consulta':consulta,
+                'rol_usuario':rol_usuario
+                }
+        return render(request, 'activo/informacion_hardware.html', context)
 
 def administar_software(request):
     
@@ -221,20 +266,21 @@ def agregar_version_ofimatica (request):
     return render (request, 'administrador/agregar_version_ofimatica.html',context)
 
 class generar_pdf(View):
-    def get(self,request,*args,**kwargs):
+    def get(self,request,pk):
         
-        activo = TipoActivo.objects.filter()
+        print(f"pri.key:{pk}")
+        
+        activo = TipoActivo.objects.get(id=pk)
     
-        software = InformacionSoftware.objects.all()
-        hardware = InformacionHardware.objects.all()
+        software = InformacionSoftware.objects.get(id=pk)
+        #hardware = InformacionHardware.objects.get(id=pk)
 
         version_sistema_operativo = VersionSistemaOperativo.objects.all()
-        version_ofimatica = VersionOfimatica.objects.all()
-        antivirus = Antivirus.objects.all()
-        herramienta_Cloud = HerramientaCloud.objects.all()
-        navegador = Navegador.objects.all()
-        
-        
+        version_ofimatica = VersionOfimatica.objects.get(id=pk)
+        antivirus = Antivirus.objects.get(id=pk)
+        herramienta_cloud = HerramientaCloud.objects.get(id=pk)
+        navegador = Navegador.objects.get(id=pk)
+        ofimatica = Ofimatica.objects.get(id=pk)
         
         template_name="activo/informacion_activo.html"
         
@@ -243,12 +289,15 @@ class generar_pdf(View):
                 'informacion_software':software,
                 'version_sistema_op' :version_sistema_operativo,
                 'version_ofimatica' : version_ofimatica,
-                'cloud':herramienta_Cloud,
+                'cloud':herramienta_cloud,
                 'antivirus': antivirus,
                 'navegador':navegador,
-                'informacion_hardware': hardware,
+                'ofimatica':ofimatica,
+                #informacion_hardware': hardware
                 
         }
+        
+        print(f"antivirus:{antivirus}")
       
         pdf = render_to_pdf(template_name, data)
         return HttpResponse(pdf, content_type='application/pdf')

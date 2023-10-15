@@ -1,9 +1,12 @@
 
 const boton = document.querySelector("btn btn-success")
 
+boton.addEventListener("click", prevenirEvent);
+
 boton.addEventListener("click",  prevenirEvent() )
   function prevenirEvent(e) {
     e.preventDefault()
+    showSweetAlert(accion, url)
 }
 
 async function showSweetAlert(accion, url) {

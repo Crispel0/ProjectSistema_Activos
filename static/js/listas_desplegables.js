@@ -5,8 +5,7 @@ $(document).ready(function(){
         $ofimatica = $("#id_ofimatica")
         $version_ofimatica = $("#id_version_ofimatica")
         $options_ofimatica = $version_ofimatica.find('option');
-
-
+        
         $sistema.on("change", function(){
           $version.html($options.filter('[value="'+this.value+'"]'))
         }).trigger('change');

@@ -26,7 +26,7 @@
     <p>Activo No. {{item.serie}}</p> 
 
 {% endfor %}
-<form method="POST" style="width: 100%;">
+<form action="../listado/" method="POST" style="width: 100%;">
     {% csrf_token %}
     <div class="container border ">
     <div class="row">
@@ -101,7 +101,7 @@
 </table>
 <script src="{% static 'js/active_deactivate_input.js' %}"> </script>
 </div>
-    <button type="submit" class="my-2 btn btn-success" onclick="showSweetAlert('agregar' ,'../listado/{{item.id}}')">Guardar</button>
+    <button type="submit" class="my-2 btn btn-success" onclick="showSweetAlert('agregar' ,'../informacion_hardware_agregar{{item.id}}')">Guardar</button>
     <a  class="my-2 btn btn-danger" onclick="showSweetAlert('eliminar' ,'../listado/')">Volver</a>
 </form>
 {% endblock %}  

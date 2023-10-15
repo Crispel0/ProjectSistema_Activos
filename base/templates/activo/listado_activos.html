@@ -57,10 +57,10 @@
                     {% if item.estado_software == False %}
                     <td><a href="{% url 'informacion_software' item.id %}"><i class="fa-solid fa-file text-danger" title="Software"></i></a></td>
                     {% else %}
-                    <td><a href="#"><i class="fa-solid fa-file text-success" title="Ver info software"></i></a>
-                    <a Target="_blank" href="{% url 'generar_pdf' %}"><i class="fa-solid fa-file-pdf text-success" title="generar_pdf"></i></a></td>
+                    <td><a  onclick="showSweetAlert('editar','../informacion_software/{{item.id}}')"><i class="fa-solid fa-file text-success" title="Ver info software"></i></a>
+                    <a Target="_blank" href="{% url 'generar_pdf' item.id %}"><i class="fa-solid fa-file-pdf text-success" title="generar_pdf"></i></a></td>
                     {% endif %}
-                    <td><a href="{% url 'informacion_hardware' item.id %}"><i class="fa-solid fa-save text-danger" title="Hardware"></i></a></td>
+                    <td><a  onclick="showSweetAlert('editar','../informacion_hardware/{{item.id}}')"><i class="fa-solid fa-save text-danger" title="Hardware"></i></a></td>
                     {% endfor %}
                 </tr>
             </tbody>

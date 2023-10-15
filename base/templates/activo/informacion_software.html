@@ -18,8 +18,8 @@
         <form method="POST" role="form" id="form">
           {% csrf_token %}
           {{form | crispy}}
-          <button class="btn btn-success" type="submit">Guardar</button>
-          <a href="{% url 'listado_activos' %}" class="btn btn-danger">
+          <button type="submit" class="btn btn-success" type="submit">Guardar</button>
+          <a onclick="showSweetAlert('eliminar' ,'../listado')" class="btn btn-danger">
             Volver
           </a>
         </form>

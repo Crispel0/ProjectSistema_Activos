@@ -10,8 +10,6 @@ const checkbox_tarjeta_video = document.getElementById("id_tarjeta_video_no_apli
 const checkbox_monitor = document.getElementById("id_monitor_no_aplica");
 const checkbox_mouse = document.getElementById("id_mouse_no_aplica");
 const checkbox_teclado = document.getElementById("id_teclado_no_aplica");
-
-
 const tarjeta_madre = document.getElementsByClassName("tarjeta_madre");
 const fuente_poder = document.getElementsByClassName("fuente_poder");
 const procesador = document.getElementsByClassName("procesador");

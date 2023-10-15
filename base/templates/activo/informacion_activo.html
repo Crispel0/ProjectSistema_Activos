@@ -20,6 +20,7 @@
         </div>
         <br/>
         <br/>
+        {% csrf_token %}
         <h1 class="text-center">Activo Hardware</h1>
         <table class="table my-3 table-responsive">
           <thead>
@@ -45,7 +46,7 @@
                   <td>
                     {{ form.tarjeta_madre_modelo }}</td>
                   <td>
-                    {{ form.fuente_poder_modelo }}
+                    {{ form.fuente_poder_modelo. }}
                   </td>
                   <td>
                   {{ form.procesador_modelo }}
@@ -188,7 +189,6 @@
         <h1>Activo Software</h1>
         <br><br>
         <table class="table my-3 table-responsive">
-          <p>{{activo.estado_software}}</p>
             <th>
                 <tr>
                     <th>sistema operativo</th>
@@ -202,10 +202,9 @@
                 </tr>
             </th> 
             <tbody>
-              {% for item_sistema in version_sistema_op %}
               <tr>
-                <td>{{item_sistema.sistema_operativo}}</td>
-                <td>{{item_sistema.version_sistema}}</td>
+                <td>{{informacion_software.sistema_operativo}}</td>
+                <td>{{informacion_software.version_sistema_op}}</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
@@ -213,57 +212,56 @@
                 <td>-</td>
                 <td>-</td>
               </tr>
-              {% endfor %}
-    
-              {% for item_ofimatica in version_ofimatica %}
               <tr>
                 <td>-</td>
                 <td>-</td>
+                <td>{{version_ofimatica.paquete}}</td>
                 <td>-</td>
-                <td>{{item_ofimatica.paquete}}</td>
-                <td>{{item_ofimatica.version}}</td>
+                <td>-</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
               </tr>
-              {% endfor %}
-              {% for item_antivirus in antivirus %}
               <tr>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
+                <td>{{version_ofimatica.version}}</td>
                 <td>-</td>
                 <td>-</td>
-                <td>{{item_antivirus.antivirus}}</td>
                 <td>-</td>
                 <td>-</td>
               </tr>
-              {% endfor %}
-              {% for item_navegador in navegador %}
               <tr>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
+                <td>{{antivirus.antivirus}}</td>
                 <td>-</td>
-                <td>{{item_navegador.navegador}}</td>
-                <td>{{item_navegador.navegador}}</td>
                 <td>-</td>
-              </tr>
-              {% endfor %}
-    
-              {% for item_cloud in cloud %}
+                <td>-</td>
+              </tr>      
               <tr>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
+                <td>{{navegador.navegador}}</td>
+                <td>{{navegador.navegador}}</td>
                 <td>-</td>
-                <td>-</td>
-                <td>{{item_cloud.herramienta}}</td>
               </tr>
-              {% endfor %}
+              <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{cloud.herramienta}}</td>
+              </tr>
             </tbody>
       </table>
       </div>
