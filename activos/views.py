@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template import RequestContext
 from .forms import TipoActivoForm, InformacionSoftwareForm, InformacionHardwareForm, SistemaOperativoForm, VersionSistemaOperativoForm, OfimaticaForm,VersionOfimaticaForm
 from .models import TipoActivo,InformacionSoftware, Antivirus,InformacionHardware,Navegador ,HerramientaCloud, SistemaOperativo,VersionSistemaOperativo, Ofimatica, VersionOfimatica
 from django.http import HttpResponse
@@ -35,14 +36,14 @@ def informacion_software(request, id):
             tipo_activo = TipoActivo.objects.get(id=id)
             new_info_software = InformacionSoftware.objects.filter(id_activo=tipo_activo).first()
             if new_info_software:
-                # If the object already exists, update its attributes
                 new_info_software.usuario_registro =  new_info_software.usuario_registro
                 new_info_software.id_activo = new_info_software.id_activo
                 new_info_software.user = request.user
                 new_info_software.user =True
                 new_info_software.id_activo.id = new_info_software.id_activo.id
-                # Update other attributes as needed
                 new_info_software.save()
+                
+               
             else:
                 nueva_info_software = info_software.save(commit=False)
                 tipo_activo = TipoActivo.objects.get(id=id)
@@ -57,52 +58,37 @@ def informacion_software(request, id):
         return redirect('listado_activos')
     
     else: #here is necessary change the code
-        formulario = InformacionSoftwareForm()
+        tipo_activo = TipoActivo.objects.get(id=id)
+        existing_info_software = InformacionSoftware.objects.filter(id_activo=tipo_activo).first()
+        formulario = InformacionSoftwareForm(instance=existing_info_software)
+
+        
         titulo = "Información de software"
         consulta = TipoActivo.objects.filter(id=id)
         context = {'form': formulario, 'titulo': titulo, 'consulta': consulta, 'rol_usuario':rol_usuario}
         return render(request, 'activo/informacion_software.html', context)
 
 def informacion_hardware(request, id):
-    rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+    context = {
+        'form':InformacionHardwareForm()
+    }
+
     if request.method == 'POST':
-        info_hardware = InformacionHardwareForm(request.POST)
-        if info_hardware.is_valid():
-            existing_info_hardware = InformacionHardware.objects.filter(id_activo=tipo_activo).first()
+        form = InformacionHardwareForm(request.POST)
 
-            if existing_info_hardware:
-                # If the object already exists, update its attributes
-                existing_info_hardware.id_activo = nueva_info_hardware.id_activo
-                existing_info_hardware.usuario_registro =  existing_info_hardware.usuario_registro
-                existing_info_hardware.user = request.user
-                existing_info_hardware.user =True
-                existing_info_hardware.id_activo.id = existing_info_hardware.id_activo.id
+        if form.is_valid():
+            context['message'] = "Formulario Guardado"
+            print("POST - FORMULARIO - OK")
+            form.save()
+            return render(request, 'activo/informacion_hardware.html', context)
 
-                # Update other attributes as needed
-                existing_info_hardware.save()
-            else: 
-                nueva_info_hardware = info_hardware.save(commit=False)
-                tipo_activo = TipoActivo.objects.get(id=id)
-                nueva_info_hardware.id_activo = tipo_activo
-                nueva_info_hardware.usuario_registro = rol_usuario  
-                nueva_info_hardware.user = request.user
-                nueva_info_hardware.user = True
-                tipo_activo.estado_software = True
-                tipo_activo.save()
-                nueva_info_hardware.save()
-           
-        return redirect('listado_activos')
+        else:
+            context['form'] = form
+            context['message'] = "Formulario Invalido"
+            return render(request, 'activo/informacion_hardware.html', context)
 
-    else:
-        rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
-        formulario = InformacionHardwareForm()
-        titulo = "Información de Hardware"
-        consulta = TipoActivo.objects.filter(id=id)
-        context = {'form':formulario,
-                'titulo':titulo,
-                'consulta':consulta,
-                'rol_usuario':rol_usuario
-                }
+    if request.method == 'GET':
+        print("GET - FORMULARIO - OK")
         return render(request, 'activo/informacion_hardware.html', context)
 
 def administar_software(request):
@@ -266,15 +252,15 @@ def agregar_version_ofimatica (request):
     return render (request, 'administrador/agregar_version_ofimatica.html',context)
 
 class generar_pdf(View):
-    def get(self,request,pk):
+    def get(request,self,pk):
         
         print(f"pri.key:{pk}")
         
         activo = TipoActivo.objects.get(id=pk)
     
         software = InformacionSoftware.objects.get(id=pk)
-        #hardware = InformacionHardware.objects.get(id=pk)
-
+        hardware = InformacionHardware.objects.get(id=pk)
+        
         version_sistema_operativo = VersionSistemaOperativo.objects.all()
         version_ofimatica = VersionOfimatica.objects.get(id=pk)
         antivirus = Antivirus.objects.get(id=pk)
@@ -293,12 +279,8 @@ class generar_pdf(View):
                 'antivirus': antivirus,
                 'navegador':navegador,
                 'ofimatica':ofimatica,
-                #informacion_hardware': hardware
-                
-        }
-        
-        print(f"antivirus:{antivirus}")
-      
+                'informacion_hardware': hardware
+            }      
         pdf = render_to_pdf(template_name, data)
         return HttpResponse(pdf, content_type='application/pdf')
 

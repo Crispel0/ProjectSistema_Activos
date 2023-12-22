@@ -24,6 +24,4 @@ urlpatterns = [
     path("generar_pdf/<pk>", generar_pdf.as_view(), name='generar_pdf'),
     path ('adminsitar_software/eliminar_sistema_operativo/<int:pk>', eliminar_sistema_operativo, name = "eliminar_sistema_operativo"),
     path("administrar_ofimatica/eliminar_version_ofimatica/<int:pk>", eliminar_version_paquete_ofimatica, name="eliminar_version_paquete_ofimatica"),
-
-
 ]

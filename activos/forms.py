@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from .models import Activo, TipoActivo, Estado, InformacionSoftware, SistemaOperativo,VersionSistemaOperativo,Ofimatica, VersionOfimatica,Antivirus, Navegador,HerramientaCloud, InformacionHardware
 from django.forms import ModelForm
 from django import forms
@@ -11,7 +12,7 @@ class TipoActivoForm(ModelForm):
     estado = forms.ModelChoiceField(queryset=Estado.objects.all())
 
 
-class InformacionSoftwareForm(ModelForm):
+class InformacionSoftwareForm(forms.ModelForm):
     class Meta:
         model = InformacionSoftware
         exclude=['id_activo', 'registrado', 'usuario_registro']
@@ -25,10 +26,13 @@ class InformacionSoftwareForm(ModelForm):
     herramienta_cloud = forms.ModelChoiceField(queryset = HerramientaCloud.objects.all()) 
 
 class InformacionHardwareForm(ModelForm):
+
     class Meta:
         model = InformacionHardware
         fields = '__all__'
-        exclude=['sistema_operativo','version_sitema_op']
+        exclude= ['sistema_operativo','version_sitema_op']
+
+    
 
         
     def __init__(self, *args,**kwargs):
@@ -56,10 +60,42 @@ class InformacionHardwareForm(ModelForm):
                 }
                 field.widget.attrs.update(classes)
 
-
-    
-
-  
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     if self.is_valid():
+    #         cleaned_data = self.cleaned_data["tarjeta_madre_marca"]
+    #         cleaned_data = self.cleaned_data["tarjeta_madre_modelo"]
+    #         cleaned_data = self.cleaned_data["tarjeta_madre_serie"]
+    #         cleaned_data = self.cleaned_data["fuente_poder_marca"]
+    #         cleaned_data = self.cleaned_data["fuente_poder_modelo"]
+    #         cleaned_data = self.cleaned_data["fuente_poder_serie"]
+    #         cleaned_data = self.cleaned_data["fuente_poder_capacidad"]
+    #         cleaned_data = self.cleaned_data["procesador_marca"]
+    #         cleaned_data = self.cleaned_data["procesador_serie"]
+    #         cleaned_data = self.cleaned_data["disco_duro_1_marca"]
+    #         cleaned_data = self.cleaned_data["disco_duro_1_modelo"]
+    #         cleaned_data = self.cleaned_data["disco_duro_1_serie"]
+    #         cleaned_data = self.cleaned_data["disco_duro_1_capacidad"]
+    #         cleaned_data = self.cleaned_data["disco_duro_2_marca"]
+    #         cleaned_data = self.cleaned_data["disco_duro_2_modelo"]
+    #         cleaned_data = self.cleaned_data["disco_duro_2_serie"]
+    #         cleaned_data = self.cleaned_data["disco_duro_2_capacidad"]
+    #         cleaned_data = self.cleaned_data["ram_slot_1_marca"]
+    #         cleaned_data = self.cleaned_data["ram_slot_1_modelo"]
+    #         cleaned_data = self.cleaned_data["ram_slot_1_serie"]
+    #         cleaned_data = self.cleaned_data["ram_slot_1_capacidad"]
+    #         cleaned_data = self.cleaned_data["ram_slot_2_marca"]
+    #         cleaned_data = self.cleaned_data["ram_slot_2_modelo"]
+    #         cleaned_data = self.cleaned_data["ram_slot_2_serie"]
+    #         cleaned_data = self.cleaned_data["ram_slot_2_capacidad"]
+    #         cleaned_data = self.cleaned_data["tarjeta_video_marca"]
+    #         cleaned_data = self.cleaned_data["tarjeta_video_modelo"]
+    #         cleaned_data = self.cleaned_data["tarjeta_video_serie"]
+    #         cleaned_data = self.cleaned_data["tarjeta_video_capacidad"]
+    #         cleaned_data = self.cleaned_data["monitor_marca"]
+    #         cleaned_data = self.cleaned_data["monitor_modelo"]
+    #         cleaned_data = self.cleaned_data["monitor_serie"]
+    #     return cleaned_data
     
 class SistemaOperativoForm(ModelForm):
     class Meta:

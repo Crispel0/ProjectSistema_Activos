@@ -16,8 +16,6 @@
         font-size: 13px;
     }
     }    
-   
-
 </style>
 
 <h1>Formulario de hardware</h1>
@@ -26,83 +24,28 @@
     <p>Activo No. {{item.serie}}</p> 
 
 {% endfor %}
-<form action="../listado/" method="POST" style="width: 100%;">
+<form action="#" method="POST" style="width: 100%;">
     {% csrf_token %}
     <div class="container border ">
     <div class="row">
-        <table class="table table-responsive">
-            <div class="col-md-6 col-sm-6">
-            <tr>
-                <td>{{ form.tarjeta_madre_marca | as_crispy_field }}</td>
-                <td>{{ form.fuente_poder_marca | as_crispy_field }}</td>
-                <td>{{ form.procesador_marca | as_crispy_field }}</td>
-                <td>{{ form.disco_duro_1_marca | as_crispy_field }}</td>
-                <td>{{ form.disco_duro_2_marca | as_crispy_field }}</td>
-                <td>{{ form.ram_slot_1_marca | as_crispy_field }}</td>
-                <td>{{ form.ram_slot_2_marca | as_crispy_field }}</td>
-                <td>{{ form.tarjeta_video_marca | as_crispy_field }}</td>
-                <td>{{ form.monitor_marca | as_crispy_field }}</td>
-                <td>{{ form.mouse_marca | as_crispy_field }}</td>
-                <td>{{ form.teclado_marca | as_crispy_field }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.tarjeta_madre_modelo | as_crispy_field }}</td>
-                <td>{{ form.fuente_poder_modelo | as_crispy_field }}</td>
-                <td>{{ form.procesador_modelo | as_crispy_field }}</td>
-                <td>{{ form.disco_duro_1_modelo | as_crispy_field }}
-                <td>{{ form.disco_duro_2_modelo | as_crispy_field }}</td>             
-                <td>{{ form.ram_slot_1_modelo | as_crispy_field }}</td>
-                <td>{{ form.ram_slot_2_modelo | as_crispy_field }}</td>
-                <td>{{ form.tarjeta_video_modelo | as_crispy_field }}</td>
-                <td>{{ form.monitor_modelo | as_crispy_field }}</td>
-                <td>{{ form.mouse_modelo | as_crispy_field }}</td>
-                <td>{{ form.teclado_modelo | as_crispy_field}} </td>
-            </tr>
+        <div class="col-md-12 col-sm-12">
+            <table class="table table-responsive">
+                    {% for field in form %}
+                        {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+                            </tr><tr>
+                        {% endif %}
+                        <th>{{field.label}}</th>
+                        <td>{{ field }}</td>
+                    {% endfor %}
+                </table>  
+            </table>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <tr>
-                <td>{{ form.tarjeta_madre_serie | as_crispy_field }}</td>
-                <td>{{ form.fuente_poder_serie | as_crispy_field }}</td>
-                <td>{{ form.procesador_serie | as_crispy_field }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{{ form.monitor_serie | as_crispy_field }} </td>
-                <td>{{ form.mouse_serie | as_crispy_field }} </td>
-                <td>{{ form.teclado_serie | as_crispy_field }} </td>
-            </tr>
-            <tr>
-            <td></td>
-            <td>{{ form.fuente_poder_capacidad | as_crispy_field }} </td>
-            <td></td>
-            <td>{{ form.disco_duro_1_capacidad | as_crispy_field }} </td>
-            <td>{{ form.disco_duro_2_capacidad | as_crispy_field }} </td>
-            <td>{{ form.ram_slot_1_capacidad | as_crispy_field }}</td>
-            <td>{{ form.ram_slot_2_capacidad | as_crispy_field }}</td>
-            <td>{{ form.tarjeta_video_capacidad | as_crispy_field }}</td>
-        </tr>
-            <tr>
-
-                <td>{{ form.tarjeta_madre_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.fuente_poder_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.procesador_no_aplica |  as_crispy_field }}</td>
-                <td>{{ form.disco_duro_1_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.disco_duro_2_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.ram_slot_1_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.ram_slot_2_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.tarjeta_video_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.monitor_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.mouse_no_aplica | as_crispy_field }}</td>
-                <td>{{ form.teclado_no_aplica | as_crispy_field }}</td>
-            </tr>
-        </div>
-</table>
 <script src="{% static 'js/active_deactivate_input.js' %}"> </script>
+
 </div>
-    <button type="submit" class="my-2 btn btn-success" onclick="showSweetAlert('agregar' ,'../informacion_hardware_agregar{{item.id}}')">Guardar</button>
-    <a  class="my-2 btn btn-danger" onclick="showSweetAlert('eliminar' ,'../listado/')">Volver</a>
+
+<button type="submit" class="my-2 btn btn-success" onclick="showSweetAlert('agregar' ,'../listado/')">Guardar</button>
+<a  class="my-2 btn btn-danger" onclick="showSweetAlert('eliminar' ,'../listado/')">Volver</a>
 </form>
 {% endblock %}  
 

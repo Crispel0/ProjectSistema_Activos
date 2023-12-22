@@ -49,7 +49,7 @@ def crear_usuario(request):
             else:
                 user=User.objects.get(username=request.POST['documento'])
 
-            usuario= Usuario.objects.create(
+                usuario= Usuario.objects.create(
                 nombres=request.POST['nombres'],
                 apellidos=request.POST['apellidos'],
                 email=request.POST['email'],

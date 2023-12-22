@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -147,13 +148,20 @@ JAZZMIN_SETTINGS = {
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Control Activos",
     "site_icon": "img/logo nuevo 2022.png",
+    # Add your own branding here
     "site_logo": "img/logo nuevo 2022.png",
     "welcome_sign": "Bienvenido Control Activos ",
     # Copyright on the footer
     "copyright": "contraloría departamental del Tolima",
     "search_model": ["auth.User", "auth.Group", "auth.Activo"],
     "user_avatar": None,
-    
+    ############
+    # Top Menu #
+    ############
+ 
+    # Side Menu #
+    #############
+    # Whether to display the side menu
     "show_sidebar": True,
     # Whether to aut expand the menu
     "navigation_expanded": True,

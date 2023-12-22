@@ -24,166 +24,173 @@
         <h1 class="text-center">Activo Hardware</h1>
         <table class="table my-3 table-responsive">
           <thead>
-              <p>{{activo.activo_id}}</p>
+              <p><h2>{{activo.activo_id}}</h2></p>
               <th>
                 <tr>
-                    <th>tarjeta madre</th>
-                    <th>fuente poder</th>
-                    <th>disco duro 1</th>
-                    <th>disco duro 2</th>
-                    <th>memoria ram slot 1</th>
-                    <th>memoria ram slot 2</th>
-                    <th>tarjeta video</th>
-                    <th>monitor</th>
-                    <th>mouse</th>
-                    <th>teclado</th>
+                    <th>Categoria</th>
+                    <th>Tarjeta madre</th>
+                    <th>Fuente poder</th>
+                    <th>Disco duro 1</th>
+                    <th>Disco duro 2</th>
+                    <th>Memoria ram slot 1</th>
+                    <th>Memoria ram slot 2</th>
+                    <th>Tarjeta video</th>
+                    <th>Monitor</th>
+                    <th>Mouse</th>
+                    <th>Teclado</th>
                 </tr>
               </th>
+             
               <th>
-                {% for form in informacion_hardware %}
+           
                 <tr>
-                  <th>modelo</th>
+                  <th>Modelo</th>
                   <td>
-                    {{ form.tarjeta_madre_modelo }}</td>
+                    {{ informacion_hardware.tarjeta_madre_modelo }}</td>
                   <td>
-                    {{ form.fuente_poder_modelo. }}
+                    {{ informacion_hardware.fuente_poder_modelo. }}
                   </td>
                   <td>
-                  {{ form.procesador_modelo }}
+                  {{ informacion_hardware.procesador_modelo }}
                   </td>
                   <td>
-                  {{ form.disco_duro_1_modelo }}
+                  {{ informacion_hardware.disco_duro_1_modelo }}
                   </td>
                   <td>
-                  {{ form.disco_duro_2_modelo }}
+                  {{ informacion_hardware.disco_duro_2_modelo }}
                   </td>
                   <td>
-                  {{ form.ram_slot_1_modelo }}
+                  {{ informacion_hardware.ram_slot_1_modelo }}
                   </td>
                   <td>
-                  {{ form.ram_slot_2_modelo }}
+                  {{ informacion_hardware.ram_slot_2_modelo }}
                   </td>
                   <td>
-                  {{ form.tarjeta_video_modelo }}
+                  {{ informacion_hardware.tarjeta_video_modelo }}
                   </td>
                   <td>
-                  {{ form.monitor_modelo }}
+                  {{ informacion_hardware.monitor_modelo }}
                   </td>
                   <td>
-                  {{ form.mouse_modelo }}
+                  {{ informacion_hardware.mouse_modelo }}
                   </td>
                   <td>
-                    {{ form.teclado_modelo }}
+                    {{ informacion_hardware.teclado_modelo }}
                   </td>
                 </tr>
                 <tr>
-                  <th>marca</th>
+                  <th>Marca</th>
                     <td>
-                      {{ form.tarjeta_madre_marca }}</td>
+                      {{ informacion_hardware.tarjeta_madre_marca }}</td>
                     <td>
-                      {{ form.fuente_poder_marca }}
+                      {{ informacion_hardware.fuente_poder_marca }}
                     </td>
                     <td>
-                    {{ form.procesador_marca }}
+                    {{ informacion_hardware.procesador_marca }}
                     </td>
                     <td>
-                    {{ form.disco_duro_1_marca }}
+                    {{ informacion_hardware.disco_duro_1_marca }}
                     </td>
                     <td>
-                    {{ form.disco_duro_2_marca }}
+                    {{ informacion_hardware.disco_duro_2_marca }}
                     </td>
                     <td>
-                    {{ form.ram_slot_1_marca }}
+                    {{ informacion_hardware.ram_slot_1_marca }}
                     </td>
                     <td>
-                    {{ form.ram_slot_2_marca }}
+                    {{ informacion_hardware.ram_slot_2_marca }}
                     </td>
                     <td>
-                    {{ form.tarjeta_video_marca }}
+                    {{ informacion_hardware.tarjeta_video_marca }}
                     </td>
                     <td>
-                    {{ form.monitor_marca }}
+                    {{ informacion_hardware.monitor_marca }}
                     </td>
                     <td>
-                    {{ form.mouse_marca }}
+                    {{ informacion_hardware.mouse_marca }}
                     </td>
                     <td>
-                      {{ form.teclado_marca }}
+                      {{ informacion_hardware.teclado_marca }}
                     </td>
                   </tr>
                 <tr>
-                  <th >serie</th>
+                  <th>Serie</th>
                   <td>
-                    {{ form.tarjeta_madre_serie }}</td>
+                    {{ informacion_hardware.tarjeta_madre_serie }}</td>
                   <td>
-                    {{ form.fuente_poder_serie }}
+                    {{ informacion_hardware.fuente_poder_serie }}
                   </td>
                   <td>
-                  {{ form.procesador_serie }}
+                  {{ informacion_hardware.procesador_serie }}
                   </td>
                   <td>
-                  {{ form.disco_duro_1_serie }}
+                  {{ informacion_hardware.disco_duro_1_serie }}
                   </td>
                   <td>
-                  {{ form.disco_duro_2_serie }}
+                  {{ informacion_hardware.disco_duro_2_serie }}
                   </td>
                   <td>
-                  {{ form.ram_slot_1_serie }}
+                  {{ informacion_hardware.ram_slot_1_serie }}
                   </td>
                   <td>
-                  {{ form.ram_slot_2_serie }}
+                  {{ informacion_hardware.ram_slot_2_serie }}
                   </td>
                   <td>
-                  {{ form.tarjeta_video_serie }}
+                  {{ informacion_hardware.tarjeta_video_serie }}
                   </td>
                   <td>
-                  {{ form.monitor_serie }}
+                  {{ informacion_hardware.monitor_serie }}
                   </td>
                   <td>
-                  {{ form.mouse_serie }}
+                  {{ informacion_hardware.mouse_serie }}
                   </td>
                   <td>
-                    {{ form.teclado_serie }}
+                    {{ informacion_hardware.teclado_serie }}
                   </td>
                 </tr>
                 <tr>
-                  <th> no aplica</th>
+                  <th>No aplica</th>
+                  {% if informacion_hardware.tarjeta_madre_no_aplica == false %}
+                    <td></td>
+                  {% endif %}
+                  {% if informacion_hardware.fuente_poder_no_aplica == false %}
+                    <td></td>
+                  {% endif %} 
+                  </td>
+                  {% if informacion_hardware.procesador_no_aplica == false %}
+                  <td></td>
+                  {% endif %} 
+
+                  <td></td>
+                  
+                  {% if informacion_hardware.disco_duro_1_no_aplica == false %}
+                    <td></td>
+                  {% endif %}
                   <td>
-                    {{ form.tarjeta_madre_no_aplica }}</td>
-                  <td>
-                    {{ form.fuente_poder_no_aplica }}
+                  {{ informacion_hardware.disco_duro_2_no_aplica }}
                   </td>
                   <td>
-                  {{ form.procesador_no_aplica }}
-                  </td>
-                  <td>
-                  {{ form.disco_duro_1_no_aplica }}
-                  </td>
-                  <td>
-                  {{ form.disco_duro_2_no_aplica }}
-                  </td>
-                  <td>
-                  {{ form.ram_slot_1_no_aplica }}
+                  {{ informacion_hardware.ram_slot_1_no_aplica }}
                   </td>
                   <td>        
-                  {{ form.ram_slot_2_no_aplica }}
+                  {{ informacion_hardware.ram_slot_2_no_aplica }}
                   </td>
                   <td>
-                  {{ form.tarjeta_video_no_aplica }}
+                  {{ informacion_hardware.tarjeta_video_no_aplica }}
                   </td>
                   <td>
-                  {{ form.monitor_no_aplica }}
+                  {{ informacion_hardware.monitor_no_aplica }}
                   </td>
                   <td>
-                  {{ form.mouse_no_aplica }}
+                  {{ informacion_hardware.mouse_no_aplica }}
                   </td>
                   <td>
-                    {{ form.teclado_no_aplica }}
+                    {{ informacion_hardware.teclado_no_aplica }}
                   </td>
                 </tr>
               </th>
-            {% endfor %}
           </thead>
+         
       </table>
       <br><br>
         <h1>Activo Software</h1>
