@@ -17,26 +17,30 @@
     }
     }    
 </style>
+<head>
+    <title>informacion hardware</title>
+</head>
 
 <h1>Formulario de hardware</h1>
 {% for item in consulta %}
     <p>Marca. {{item.marca}}</p>  
     <p>Activo No. {{item.serie}}</p> 
-
 {% endfor %}
-<form action="#" method="POST" style="width: 100%;">
-    {{message}}
+
+<form method="POST" style="width: 100%;" role="form" id="form">
     {% csrf_token %}
+
+
     <div class="container border ">
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <table class="table table-responsive">
                     {% for field in form %}
-                        {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+                        {% if forloop.counter0|divisibleby:5 and not forloop.first %}
                             </tr><tr>
                         {% endif %}
-                        <th>{{field.label}}</th>
-                        <td>{{ field }}</td>
+                            <th>{{field.label}}</th>
+                            <td>{{ field }}</td>
                     {% endfor %}
                 </table>  
             </table>

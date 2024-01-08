@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #librerias_usadas
     'crispy_forms', #pip install django-crispy-forms
     "crispy_bootstrap5", #pip install crispy-bootstrap5
+    'django_rest_passwordreset', #pip install django-rest-passwordreset
     #modulos
     'activos',
     'usuarios',

@@ -106,9 +106,14 @@ def usuarios_eliminar(request, pk):
 @login_required(login_url='login')
 def usuarios(request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
+    
+    
     if rol_usuario.rol == "Administrador":
         listar_usuario=Usuario.objects.filter(estado='1')
         context ={'usuarios':listar_usuario, 'titulo':"Lista Usuarios", 'rol_usuario':rol_usuario}
         return render (request, 'usuario/usuarios.html', context )
     else:
-       return redirect ('index')
+        listar_usuario=Usuario.objects.filter(estado='0')
+        context ={'usuarios':listar_usuario, 'titulo':"Lista Usuarios", 'rol_usuario':rol_usuario}
+        return redirect ('index')
+    

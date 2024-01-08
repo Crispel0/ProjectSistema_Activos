@@ -27,18 +27,21 @@ class TipoActivo(models.Model):
         return self.serie
   
 class SistemaOperativo(models.Model):
+
     nombre_sistema = models.CharField (max_length=150,unique=True, verbose_name="nombre del sistema")
     estado = models.BooleanField (default=True, verbose_name="Estado")
+
     def __str__(self):
         return self.nombre_sistema
    
     
 class VersionSistemaOperativo (models.Model):
+
     version_sistema = models.CharField (max_length= 150, unique=True)
-    sistema_operativo = models.ForeignKey(SistemaOperativo, on_delete=models.CASCADE, verbose_name="version sistema operativo")
+    sistema_operativo = models.ForeignKey(SistemaOperativo, on_delete=models.CASCADE, verbose_name="version sistema operativo", null=False, blank=False)
+    #elacion_sistema_operativo = models.ForeignKey(SistemaOperativo, related_name='nombre_sistema',on_delete=models.CASCADE)
     estado = models.BooleanField (default=True, verbose_name="Estado")
 
-  
     def __str__(self)->str:
         return  self.version_sistema
 

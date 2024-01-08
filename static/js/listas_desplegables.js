@@ -1,4 +1,5 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
+
     var $sistema = $("#id_sistema_operativo")
         $version = $("#id_version_sistema_op")
         $options = $version.find('option');
@@ -14,3 +15,5 @@ $(document).ready(function(){
           $version_ofimatica.html($options_ofimatica.filter('[value="'+this.value+'"]'))
         }).trigger('change');
   });
+  */
+  

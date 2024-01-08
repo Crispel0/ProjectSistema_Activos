@@ -18,7 +18,7 @@
                     <i class="fa-solid fa-house m-1"></i><span class="fs-5 d-none d-sm-inline">Inicio</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">                
-                {% if rol_usuario.rol == 'Administrador' %} 
+                {% if rol_usuario.rol == 'Administrador' %}
                     <li class="nav-header ms-1 d-none d-sm-inline">Administrar opciones software</li> 
                     <li class="nav-item">
                     <a href="{% url 'administar_software' %}" class="nav-link text-dark px-0">
@@ -41,7 +41,7 @@
                             <i class="nav-icon fas fa-users"></i><span class="ms-1 d-none d-sm-inline">Ver usuarios</span>
                         </a>
                     </li>
-                    {% endif %}
+                   {% endif %}
                     <li>
                     <li class="nav-header ms-1 d-none d-sm-inline">Activos</li>
                     <a href="{% url 'listado_activos' %}" class="nav-link px-0 text-dark">

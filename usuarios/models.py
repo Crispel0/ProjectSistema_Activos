@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
@@ -20,7 +21,8 @@ class Usuario(models.Model):
     telefono=models.CharField(max_length=20, verbose_name="Teléfono")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
     fecha_nacimiento=models.DateField(verbose_name="Fecha de Nacimiento", help_text=u"MM/DD/AAAA")
-     
+
+
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')

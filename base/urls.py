@@ -24,6 +24,7 @@ from .views import salir
 
 
 
+
 urlpatterns = [
     path('admin/' , admin.site.urls),
     path('usuario/',include('usuarios.urls')),
@@ -32,8 +33,9 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('reiniciar/',auth_views.PasswordResetView.as_view(),name='pass_reset'),
     path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
-    path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='password_change'),
+    path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='password_change_recovery'),
     path('reiniciar/cambiado',auth_views.PasswordResetConfirmView.as_view(),name='password_change_process'),
-    path("salir/", salir, name='salir'),
+    path('reiniciar/cambiado/done',auth_views.PasswordResetDoneView.as_view(),name='password_change_done'),
+    path("salir/", salir, name='salir')
 ]
 

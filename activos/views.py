@@ -1,8 +1,9 @@
+import json
 from django.shortcuts import render, redirect
 from django.template import RequestContext
 from .forms import TipoActivoForm, InformacionSoftwareForm, InformacionHardwareForm, SistemaOperativoForm, VersionSistemaOperativoForm, OfimaticaForm,VersionOfimaticaForm
 from .models import TipoActivo,InformacionSoftware, Antivirus,InformacionHardware,Navegador ,HerramientaCloud, SistemaOperativo,VersionSistemaOperativo, Ofimatica, VersionOfimatica
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .utils import render_to_pdf
 from django.views.generic import View
 from usuarios.models import Usuario
@@ -27,6 +28,8 @@ def listado_activos(request):
         titulo = "Activos"
         context = {'consulta_activos':consulta_activos, 'consulta_software':consulta_software, 'form':formulario_activo, 'titulo':titulo, 'rol_usuario':rol_usuario}
         return render (request, 'activo/listado_activos.html', context)
+    
+   
     
 def informacion_software(request, id):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
@@ -53,43 +56,54 @@ def informacion_software(request, id):
                 nueva_info_software.registrado = True
                 nueva_info_software.save()
                 tipo_activo.estado_software = True
+                
                 tipo_activo.save()
 
         return redirect('listado_activos')
     
-    else: #here is necessary change the code
+    else: 
         tipo_activo = TipoActivo.objects.get(id=id)
         existing_info_software = InformacionSoftware.objects.filter(id_activo=tipo_activo).first()
         formulario = InformacionSoftwareForm(instance=existing_info_software)
 
-        
         titulo = "Información de software"
         consulta = TipoActivo.objects.filter(id=id)
         context = {'form': formulario, 'titulo': titulo, 'consulta': consulta, 'rol_usuario':rol_usuario}
         return render(request, 'activo/informacion_software.html', context)
 
+
 def informacion_hardware(request, id):
-    context = {
-        'form':InformacionHardwareForm()
-    }
-
+    rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     if request.method == 'POST':
-        form = InformacionHardwareForm(request.POST)
+        info_hardware = InformacionHardwareForm(request.POST)
 
-        if form.is_valid():
-            context['message'] = "Formulario Guardado"
-            print("POST - FORMULARIO - OK")
-            form.save()
-            return render(request, 'activo/informacion_hardware.html', context)
+        if info_hardware.is_valid():
+            tipo_activo = TipoActivo.objects.get(id=id)
+            new_info_hardware = InformacionHardware.objects.filter(id_activo=tipo_activo).first()
+            if new_info_hardware:
+                nueva_info_hardware = info_hardware.save(commit=False)
+                tipo_activo = TipoActivo.objects.get(id=id)
+                nueva_info_hardware.id_activo = tipo_activo
+                nueva_info_hardware.usuario_registro = rol_usuario  
+                nueva_info_hardware.user = request.user
+                nueva_info_hardware.registrado = True
+                nueva_info_hardware.save()
+                tipo_activo.estado_hardware = True
+                tipo_activo.save()
+                
+            else:
+                new_info_hardware.usuario_registro =  new_info_hardware.usuario_registro
+                new_info_hardware.id_activo = new_info_hardware.id_activo
+                new_info_hardware.user = request.user
+                new_info_hardware.user =True
+                new_info_hardware.id_activo.id = new_info_hardware.id_activo.id
+                new_info_hardware.save()
 
-        else:
-            context['form'] = form
-            context['message'] = "Formulario Invalido"
-            return render(request, 'activo/informacion_hardware.html', context)
-
-    if request.method == 'GET':
-        print("GET - FORMULARIO - OK")
-        return render(request, 'activo/informacion_hardware.html', context)
+        return redirect('listado_activos')
+    
+    else:
+        form = InformacionHardwareForm()
+        return render(request,'activo/informacion_hardware.html', {"form":form})
 
 def administar_software(request):
     
@@ -148,7 +162,8 @@ def agregar_version_sistema_operativo (request):
         form = VersionSistemaOperativoForm()
     else:
         sistema = VersionSistemaOperativoForm(request.POST)
-        sistema.save()
+        if sistema.is_valid():
+            sistema.save()
         return redirect ('administar_software')
     context = {'titulo':"Agregar versión de sistema operativo", 'form':form, 'rol_usuario':rol_usuario, 'titulo_vista':"Agregar Versión sistema operativo"}
     return render (request, 'administrador/agregar_version_sistema_operativo.html',context)
