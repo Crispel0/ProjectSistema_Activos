@@ -1,6 +1,4 @@
 {% extends 'partials/body.html' %}
-
-
 {% block content %}
 
 
@@ -44,19 +42,17 @@
         <td>{{usuario.fecha_nacimiento}}</td>
         <td>{{usuario.rol}}</td>
         <td>{{usuario.get_estado_display}}</td>
-        
-        
+                
       <td>
         <a class="btn btn-primary" onclick="showSweetAlert('editar' ,'../usuarios_editar/{{usuario.id}}')">
           <i class="fas fa-edit" title="Editar"></i></a>
         <a class="btn btn-danger" onclick="showSweetAlet('eliminar','./{{ usuario.id }}')">
         <i class="fas fa-trash-alt" title="eliminar"></i></a>
       </td>
-      
+
       {% endif %}
 
     </tr>
-    
 
     {% endfor %}
 

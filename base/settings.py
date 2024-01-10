@@ -218,7 +218,7 @@ JAZZMIN_UI_TWEAKS = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Configuracion deocradores login
-LOGIN_URL= 'inicio'
+LOGIN_URL= 'login'
 LOGIN_REDIRECT_URL= 'index'
 
 #configuracion envio Correo
