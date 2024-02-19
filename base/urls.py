@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 
 from django.contrib.auth import views as auth_views
-from .views import salir
+from .views import salir,panel_personalizado
 
 
 
@@ -35,6 +35,8 @@ urlpatterns = [
     path('reiniciar/cambiado/done',auth_views.PasswordResetDoneView.as_view(),name='password_change_done'),
     path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='password_change'),
+    path('panel_personalizado',panel_personalizado,name='panel_personalizado'),
+
     path("salir/", salir, name='salir')
 ]
 
