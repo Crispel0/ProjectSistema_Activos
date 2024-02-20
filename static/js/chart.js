@@ -11282,10 +11282,6 @@ function t(t, e, i) {
     }
   }
   //generate_data("x*2+7",0,10,0.5);
-  
-
-  
-
   !(function () {
     const grafico_total = document.getElementById("grafico_total");
     new ja(grafico_total, {
@@ -11302,6 +11298,9 @@ function t(t, e, i) {
           },
         ],
       },
+      options: {
+        responsive:true
+      }
     });
     const grafico_usuarios = document.getElementById("grafico_usuarios");
     new ja(grafico_usuarios, {
@@ -11320,6 +11319,9 @@ function t(t, e, i) {
           },
         ],
       },
+      options: {
+        responsive:true
+      }
     });
     const grafico_activos = document.getElementById("grafico_activos");
     new ja(grafico_activos, {
@@ -11336,6 +11338,9 @@ function t(t, e, i) {
           },
         ],
       },
+      options: {
+        responsive:true
+      }
     });
     const grafico_software = document.getElementById("grafico_software");
     new ja(grafico_software, {
@@ -11357,7 +11362,8 @@ function t(t, e, i) {
           line: {
             borderWidth: 3
           }
-        }
+        },
+        responsive: true
       },
     });
     const grafico_hardware = document.getElementById("grafico_hardware");
@@ -11377,6 +11383,9 @@ function t(t, e, i) {
           },
         ],
       },
+      options: {
+        responsive:true
+      }
     });
   })(); 
   
