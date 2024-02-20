@@ -1,0 +1,39 @@
+{% extends 'partials/body.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel_admin</title>
+</head>
+<body>
+<div class="row">
+    <div class="card-header col-12">
+    </div>
+    <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
+        <h2 class="card-title text-center">Totales</h2>
+        <canvas id="grafico_total" class="container"></canvas>
+    </div>
+    <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
+        <h2 class="card-title text-center">Usuarios</h2>
+        <canvas id="grafico_usuarios" class="container"></canvas>
+    </div>
+    <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
+        <h2 class="card-title text-center">Activos</h2>
+        <canvas id="grafico_activos" class="container"></canvas>
+    </div>
+    <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
+        <h2 class="card-title text-center">Software</h2>
+        <canvas id="grafico_software" class="container"></canvas>
+    </div>
+    <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
+        <h2 class="card-title text-center">Hardware</h2>
+        <canvas id="grafico_hardware" class="container"></canvas>
+    </div>
+</div>
+<script src="{% static 'js/chart.js' %}"></script>
+</body>
+</html>
+{% endblock %}
