@@ -1,23 +1,30 @@
 from django.contrib.auth import logout
 from django.shortcuts import redirect,render
-from activos.models import Estado
-from json import dumps
+from activos.models import Estado,Activo,VersionSistemaOperativo,InformacionHardware
+import json
 
 def salir(request):
     logout(request)
     return redirect('login')
 
 def panel_personalizado(request):
-    total = Estado.objects.all().count()
-    estados_activos = Estado.objects.filter(estado = "Activo").count()
-    estados_inactivos = Estado.objects.filter(estado = "Inactivo").count()
+    
+    cantidad_version_so = VersionSistemaOperativo.objects.values_list("id",flat=True).count() # cantidad total versiones quantity amount versions
+    cantidad_version_so_activo = VersionSistemaOperativo.objects.values_list("estado", flat=True).filter(estado=True).count() # cantidad de versiones activas quantity versions active
+    cantidad_version_so_inactivo = VersionSistemaOperativo.objects.values_list("estado", flat=True).filter(estado=False).count() #cantidad versiones inactivas quantity versions inactive
 
+    cantidad_registros_hardware = InformacionHardware.objects.values_list("id", flat=True).count()
+    
     data = {
-        "total" : total,
-        "estados_activos" : estados_activos,
-        "estados_inactivos" : estados_inactivos
+        "version_s_operativo_id": cantidad_version_so,
+        "version_so_activo": cantidad_version_so_activo,
+        "version_so_inactivo": cantidad_version_so_inactivo,
+        "cantidad_registros_hardware": cantidad_registros_hardware,
     }
 
-    dataJson = dumps(data)
-    print(dataJson)
-    return render(request, 'panel/panel_admin.html', {'data':dataJson})
+    info_panel = json.dumps(data)
+    print(type(info_panel))
+    print(info_panel)
+
+    return render(request, 'panel/panel_admin.html',{"info_panel":info_panel})
+    

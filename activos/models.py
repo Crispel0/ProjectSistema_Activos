@@ -101,6 +101,7 @@ class InformacionSoftware(models.Model):
 
     
 class InformacionHardware(models.Model):
+    
     tarjeta_madre_marca = models.CharField(max_length=150,        verbose_name= "Marca motherboard")
     tarjeta_madre_modelo = models.CharField(max_length=150,       verbose_name= "Modelo motherboard")  
     tarjeta_madre_serie =  models.CharField(max_length=150,       verbose_name= "Serie de motherboard")
