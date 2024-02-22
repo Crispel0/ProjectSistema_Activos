@@ -1,7 +1,8 @@
 from django.contrib.auth import logout
 from django.shortcuts import redirect,render
 from activos.models import Estado,Activo,VersionSistemaOperativo,InformacionHardware, InformacionSoftware
-from usuarios.models import Usuario
+from django.contrib.auth.models import User
+
 import json
 
 def salir(request):
@@ -16,9 +17,12 @@ def panel_personalizado(request):
 
     cantidad_registros_hardware = InformacionHardware.objects.values_list("id", flat=True).count()
     cantidad_registros_software = InformacionSoftware.objects.values_list("id",flat=True).count()
-    Usuario.objects.values_list("id", flat=True).count()
-    Usuario.objects.values_list("id",flat= True).filter().count()
-    
+
+    cantidad_usuarios_registrados = User.objects.values_list("id", flat=True).count()
+    cantidad_usuarios_activos = User.objects.filter(is_active = 1).count()
+    cantidad_usuarios_inactivos = User.objects.filter(is_active = 0).count()
+    cantidad_usuarios_staff = User.objects.filter(is_staff = 1).count()
+
     data = {
         #versiones sistemas_operativos_cantidad_activos_e_inactivos
         "version_s_operativo_id": cantidad_version_so,
@@ -27,11 +31,18 @@ def panel_personalizado(request):
         #software and hardware
         "cantidad_registros_hardware": cantidad_registros_hardware,
         "cantidad_registros_software": cantidad_registros_software,
+        #informacion usuarios
+        "cantidad_usuarios_registrados": cantidad_usuarios_registrados,
+        "cantidad_usuarios_activos":cantidad_usuarios_activos,
+        "cantidad_usuarios_inactivos":cantidad_usuarios_inactivos,
+        "cantidad_usuarios_staff":cantidad_usuarios_staff
     }
-
-    info_panel = json.dumps(data)
+    
+    print(type(data))
+    print(data)
+    """info_panel = json.dumps(data)
     print(type(info_panel))
-    print(info_panel)
+    print(info_panel)"""
 
-    return render(request, 'panel/panel_admin.html',{"info_panel":info_panel})
+    return render(request, 'panel/panel_admin.html',{"info_panel":data})
     
