@@ -31,12 +31,8 @@
     <div class="card-header col-12">
     </div>
     <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
-        <h2 class="card-title text-center">Totales</h2>
-        <canvas id="grafico_total" class="container"></canvas>
-    </div>
-    <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
         <h2 class="card-title text-center">Usuarios</h2>
-        <canvas id="grafico_usuarios" class="container"></canvas>
+        <canvas id="grafico_total" class="container"></canvas>
     </div>
     <div class="card-body d-flex flex-wrap col-sm-6 col-dm-5 col-lg-4">
         <h2 class="card-title text-center">Activos</h2>
@@ -53,51 +49,73 @@
 </div>
 <script type="text/javascript">
     
-var data = {{ info_panel|safe }};
+var Json_data = {{ info_panel|safe }};
 
-console.log(data);
-const yValues= [];
+const usuarios = [];
+const v_sistema_operativo = [];
+const cantidad_software_hardware = [];
 
 var ja = Nn; 
-  const activos = ["activos_totales","Activos","no_activos"];
-  const usuarios = ["usuarios_totales","Activos","no_activos"];
-  const software = ["cantidad_total","activos","no_activos"];
-  const hardware = ["cantidad_total","activos","no_Activos"];
+  const labels_activos = ["activos_totales","Activos","no_activos","is_staff"];
+  const labels_usuarios = ["usuarios_totales","Activos","no_activos"];
+  const labels_software = ["cantidad_total","activos","no_activos"];
+  const labels_hardware_software = ["cantidad_total_activos_software","cantidad_total_activos_hardware"];
 
-  /*let info_panel = JSON.parse('{"{info_panel|safe}"}');
-  const values_random = []
+function pushDataToArray(data,array,label){
+    for(var value in data){
+        if (data.hasOwnProperty(value) && label.includes(value)){
+            array.push(data[value])
+            console.log(" array agregado " + data[value] + " a el array " + array)
+        }
+    }
+}
 
-  for (var key in info_panel) {
-    alert(info_panel[key]);
-    console.log(info_panel[key])
-    values_random.push(key)
-    
-  }*/
+cantidad_elementos = 0
+for(var value in Json_data){
+    while(cantidad_elementos <= Json_data[value]){
+        if (Json_data.hasOwnProperty(value)){
+            if(cantidad_elementos <= 3){
+                pushDataToArray(Json_data,usuarios,labels_activos)
+                cantidad_elementos += 1
+            }
+            else if(cantidad_elementos > 3 && cantidad_elementos <= 6){
+                pushDataToArray(Json_data,v_sistema_operativo,labels_software)
+                cantidad_elementos += 1
+            }
+            else {
+                pushDataToArray(Json_data,cantidad_software_hardware,labels_hardware_software)
+                cantidad_elementos += 1
+            }
+        }
+    }
+}
+  
 
+  /*for (var key = 0; key <= v_sistema_operativo.length; key++) {
+    console.log(v_sistema_operativo[key])
+  }
+*/
   
   var barColors = ["red","black","blue"];
 
-  function generate_data(value,i1,i2,step = 0){
+  /*function generate_data(value,i1,i2,step = 0){
     for(let x = i1 ; x <= i2; x += step){
-      yValues.push(value)
+      yValues.push(eval(Json_data[value]))
       
     }
   }
-  generate_data(data,yValues[0],yValues[-1]);
+  #generate_data(Json_data,Json_data[0],Json_data[Json_data.length-1]);*/
 
-  yValues.forEach((e) => {
-    console.log(e);
-  });
   
   !(function () {
     const grafico_total = document.getElementById("grafico_total");
     new ja(grafico_total, {
       type: "doughnut",
       data: {
-        labels: activos,
+        labels: labels_activos,
         datasets: [
           {
-            data: yValues,
+            data: [2,4,6,8,10],
             borderWidth: 1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
@@ -112,11 +130,11 @@ var ja = Nn;
     new ja(grafico_usuarios, {
       type: "line",
       data: {
-        labels: usuarios,
+        labels: labels_usuarios,
         datasets: [
           {
             label: "Usuarios Activos/Inactivos",
-            data: yValues,
+            data: usuarios,
             borderWidth: 1,
             fill: false,
             pointRadius:1,
@@ -133,11 +151,11 @@ var ja = Nn;
     new ja(grafico_activos, {
       type: "bar",
       data: {
-        labels: activos,
+        labels: labels_activos,
         datasets: [
           {
             label: "Activos/Desactivos/Categorizacion",
-            data: yValues,
+            data: [20.30,40],
             pointRadius:1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
@@ -152,11 +170,11 @@ var ja = Nn;
     new ja(grafico_software, {
       type: "radar",
       data: {
-        labels: software,
+        labels: labels_software,
         datasets: [
           {
             label: "Activo/Desactivo/Categorizacion",
-            data: yValues,
+            data: [2,4,6,8,10],
             borderWidth: 1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
@@ -176,11 +194,11 @@ var ja = Nn;
     new ja(grafico_hardware, {
       type: "polarArea",
       data: {
-        labels: hardware,
+        labels: labels_hardware_software,
         datasets: [
           {
             label: "Categorizacion",
-            data: yValues,
+            data: [2,4,6,8,10],
             borderWidth: 1,
             fill: false,
             pointRadius:1,
@@ -194,10 +212,6 @@ var ja = Nn;
       }
     });
   })(); 
-  
-
-
-
 </script>
 </body>
 </html>
