@@ -38,11 +38,8 @@ def panel_personalizado(request):
         "cantidad_usuarios_staff":cantidad_usuarios_staff
     }
     
-    print(type(data))
-    print(data)
-    """info_panel = json.dumps(data)
-    print(type(info_panel))
-    print(info_panel)"""
+    
+    info_panel = json.dumps(data)
 
-    return render(request, 'panel/panel_admin.html',{"info_panel":data})
+    return render(request, 'panel/panel_admin.html',{'info_panel':info_panel})
     
