@@ -16,14 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include,reverse_lazy
 from django.conf.urls.i18n import i18n_patterns
 
 from django.contrib.auth import views as auth_views
 from .views import salir,panel_personalizado
-
-
-
 
 urlpatterns = [
     path('admin/' , admin.site.urls),
@@ -35,8 +32,10 @@ urlpatterns = [
     path('reiniciar/cambiado/done',auth_views.PasswordResetDoneView.as_view(),name='password_change_done'),
     path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='password_change'),
-    path('panel_personalizado',panel_personalizado,name='panel_personalizado'),
-
+    path('panel_personalizado/',panel_personalizado,name='panel_personalizado'),
+    path('cambiar/contrasena',auth_views.PasswordResetCompleteView.as_view(),name='cambiar_contrasena'),
+    path("cambio_contrasena/", auth_views.PasswordChangeView.as_view(template_name="administrador/cambio_contrasena.html", success_url=reverse_lazy('cambio_contrasena_hecho')), name="cambio_contrasena"),
+    path("cambio_contrasena/completado",auth_views.PasswordChangeDoneView.as_view(template_name="administrador/cambiar_contrasena_realizado.html"),name="cambio_contrasena_hecho",),
     path("salir/", salir, name='salir')
 ]
 

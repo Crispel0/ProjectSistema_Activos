@@ -88,13 +88,18 @@
                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
                     <span class="d-none d-sm-inline mx-1" style="color: black;">{{user.username}}</span>
+                    <li>
+                        <a href="{% url 'cambio_contrasena' %}" style="color: black;">
+                        <i class="fa-solid fa-right-from-bracket"></i><span class="ms-1 d-none d-sm-inline">cambiar_contrasena</span></a>
+                    </li>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'salir' %}">Salir</a></li>
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'salir' %}">Salir</a></li>
+                        
                     </ul>
                 </div>
                 </div>
