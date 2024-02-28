@@ -34,7 +34,7 @@ urlpatterns = [
     path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='password_change'),
     path('panel_personalizado/',panel_personalizado,name='panel_personalizado'),
     path('cambiar/contrasena',auth_views.PasswordResetCompleteView.as_view(),name='cambiar_contrasena'),
-    path("cambio_contrasena/", auth_views.PasswordChangeView.as_view(template_name="administrador/cambio_contrasena.html", success_url=reverse_lazy('cambio_contrasena_hecho')), name="cambio_contrasena"),
+    path("cambio_contrasena/", auth_views.PasswordChangeView.as_view(template_name="registration/cambio_contrasena.html", success_url=reverse_lazy('cambio_contrasena_hecho')), name="cambio_contrasena"),
     path("cambio_contrasena/completado",auth_views.PasswordChangeDoneView.as_view(template_name="administrador/cambiar_contrasena_realizado.html"),name="cambio_contrasena_hecho",),
     path("salir/", salir, name='salir')
 ]

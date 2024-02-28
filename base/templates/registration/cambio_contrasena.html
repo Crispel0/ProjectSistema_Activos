@@ -7,9 +7,11 @@
 </head>
 <body>
     <div>
-        <h1>
-            cambio_contrasena
-        </h1>
+        <form class="" action="{% url 'cambio_contrasena_hecho' %}" method="post">
+            {% csrf_token %}
+            {{form}}
+            <button type="submit" class="btn ">cambiar contrasena</button>
+          </form>
     </div>
 </body>
 </html>
