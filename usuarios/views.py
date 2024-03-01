@@ -102,7 +102,6 @@ def usuarios_eliminar(request, pk):
     messages.success(request, "Accion realizada correctamente!")
     return redirect('usuarios')
     
-    
 @login_required(login_url='login')
 def usuarios(request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 

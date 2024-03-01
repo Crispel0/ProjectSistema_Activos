@@ -10,13 +10,13 @@
         {% load static %}
         {% include 'partials/header.html' %}
             {% csrf_token %}
-        <div class="row justify-content-center" id="cambio_contraseña">
+        <div class="row justify-content-center " id="cambio_contraseña">
             <div class="card text-center W-25 mt-5">
               <div class="row">
-              <div class="card card-outline col-12 col-md-6 w-25 m-auto card-primary">
+              <div class="card card-outline col-12  w-100 m-auto card-primary">
                 <div class="card-header text-center">
                   <h1><b>Cambio Contrasena</b></h1>
-              </div>
+                </div>
               <form method="post">
               <div class="card-body">
                 <p class="login-box-msg">Estas a punto de cambiar la contraseña, ingresa nueva contraseña.</p>
@@ -27,32 +27,32 @@
                         <p style="color: red;">{{error}}</p>
                         {% endfor %}
                     {% endfor %}
-                    <div class="input-group mb-3">
-                      <div class="col-sm-12">
+                    <div class="input-group mb-3 d-flex">
+                      <div class="col-12">
                         <i class="fa-sharp fa-solid fa-lock pt-3"></i>
-                        <input id="id_old_password" name="old_password" type="password" class="hide_password form-control ms-3" required="true" placeholder="Escribe tu antigua contrasena">
+                        <input id="id_old_password" name="old_password" type="password" class="hide_password form-control ms-3 justify-content-center" required="true" placeholder="Escribe tu antigua contrasena">
                       </div>
                     </div>
-                    <div class="input-group mb-3">
-                      <div class="col-sm-12">
+                    <div class="input-group mb-3 d-flex">
+                      <div class="col-12">
                         <i class="fa-sharp fa-solid fa-lock pt-3"></i>
-                        <input id="id_new_password1" name="new_password1" type="password" class="hide_password form-control ms-3" required="true" placeholder="Escribe tu nueva contrasena">
+                        <input id="id_new_password1" name="new_password1" type="password" class="hide_password form-control ms-3 justify-content-center" required="true" placeholder="Escribe tu nueva contrasena">
                       </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="col-sm-12">
+                    <div class="input-group mb-3 d-flex">
+                        <div class="col-12">
                             <i class="fa-sharp fa-solid fa-lock pt-3"></i>
-                            <input id="id_new_password2" name="new_password2" type="password" class="hide_password form-control ms-3" required="true" placeholder="confirma tu nueva contrasena">
+                            <input id="id_new_password2" name="new_password2" type="password" class="hide_password form-control ms-3 justify-content-center" required="true" placeholder="confirma tu nueva contrasena">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row col-12">
                       <div class="col-12">
-                        <a href="{% url 'cambio_contrasena_hecho' %}"><button  type="submit" class="btn btn-success btn-block" name="password_reset_confirm">Cambiar contraseña</button></a>
+                        <a href="{% url 'cambio_contrasena_hecho' %}"><button  type="submit" class="btn btn-success btn-block col-12" name="password_reset_confirm">Cambiar contraseña</button></a>
                       </div>
                     </div>
                     <div>
-                      <ul class="btn rounded-fill text-center" onclick="toggleDarkMode()" ><i class="fa fa-moon"></i><span class="ms-1 d-none d-sm-inline">Modo Nocturno</span></ul>
-                      <button type="button" class="btn btn-sm" onclick="show_trigger()"><span class="ms-1 d-none d-sm-inline">Mostrar Contrasena/Esconder Contrasena</span></button>
+                      <ul class="btn rounded-fill text-center col-md-12 col-sm-12" onclick="toggleDarkMode()" ><i class="fa fa-moon"></i><span class="ms-1 d-none d-sm-inline">Modo Nocturno</span></ul>
+                      <button type="button" class="btn btn-sm col-md-12 col-sm-12" onclick="show_trigger()"><span class="ms-1 d-none d-sm-inline">Mostrar Contrasena/Esconder Contrasena</span></button>
                     </div>
                 </div>
             </div>
