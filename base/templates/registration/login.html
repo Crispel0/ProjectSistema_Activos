@@ -47,8 +47,8 @@
                 <span><a class="text-decoration-none text-primary " href="{% url 'pass_reset' %}">Recuperar contraseña</a></span>
             </div>
             </form>
-            <ul class="btn rounded-fill" onclick="toggleDarkMode()" ><i class="fa fa-moon"></i><span class="ms-1 d-none d-sm-inline">Modo Nocturno</span></ul>
-            <button class="" onclick="show_trigger()"><ul class="btn rounded-fill"><i class="fa fa-moon"></i><span class="ms-1 d-none d-sm-inline">Mostrar Contrasena/Esconder Contrasena</span></ul></button>
+            <ul class="btn rounded-fill"><i class="fa fa-moon"></i><span onclick="toggleDarkMode()" class="ms-1 d-none d-sm-inline">Modo Nocturno</span></ul>
+            <button type="button" class="btn btn-sm"><ul class="btn rounded-fill"><i class="fa fa-moon"></i><span onclick="show_trigger()" class="ms-1 d-none d-sm-inline">Mostrar Contrasena/Esconder Contrasena</span></ul></button>
         </div>
     </div>
 </body>

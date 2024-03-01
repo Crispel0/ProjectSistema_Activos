@@ -1,8 +1,29 @@
 from django.urls import reverse_lazy
 from .models import Activo, TipoActivo, Estado, InformacionSoftware, SistemaOperativo,VersionSistemaOperativo,Ofimatica, VersionOfimatica,Antivirus, Navegador,HerramientaCloud, InformacionHardware
 from django.forms import ModelForm
+#from django.contrib.auth.forms import PasswordChangeForm
 from django import forms
 
+
+"""class ChangePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'current-password', 'autofocus': True, 'class': 'form-control',
+                   'placeholder': 'Old Password'}),
+    )
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'new-password', 'class': 'form-control', 'placeholder': 'New Password'}),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = forms.CharField(
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'new-password', 'class': 'form-control', 'placeholder': 'Confirm password'}),
+    )
+    """
 
 class TipoActivoForm(ModelForm):
     class Meta:

@@ -7,11 +7,73 @@
 </head>
 <body>
     <div>
-        <form class="" action="{% url 'cambio_contrasena_hecho' %}" method="post">
+        {% load static %}
+        {% include 'partials/header.html' %}
             {% csrf_token %}
-            {{form}}
-            <button type="submit" class="btn ">cambiar contrasena</button>
-          </form>
-    </div>
+        <div class="row justify-content-center" id="cambio_contraseña">
+            <div class="card text-center W-25 mt-5">
+              <div class="row">
+              <div class="card card-outline col-12 col-md-6 w-25 m-auto card-primary">
+                <div class="card-header text-center">
+                  <h1><b>Cambio Contrasena</b></h1>
+              </div>
+              <form method="post">
+              <div class="card-body">
+                <p class="login-box-msg">Estas a punto de cambiar la contraseña, ingresa nueva contraseña.</p>
+                  {% csrf_token %}
+                  {% for field in form %}
+                        {% for error in field.errors %}
+                        <p style="color: red;">{{error}}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="input-group mb-3">
+                      <div class="col-sm-12">
+                        <i class="fa-sharp fa-solid fa-lock pt-3"></i>
+                        <input id="id_old_password" name="old_password" type="password" class="hide_password form-control ms-3" required="true" placeholder="Escribe tu antigua contrasena">
+                      </div>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="col-sm-12">
+                        <i class="fa-sharp fa-solid fa-lock pt-3"></i>
+                        <input id="id_new_password1" name="new_password1" type="password" class="hide_password form-control ms-3" required="true" placeholder="Escribe tu nueva contrasena">
+                      </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="col-sm-12">
+                            <i class="fa-sharp fa-solid fa-lock pt-3"></i>
+                            <input id="id_new_password2" name="new_password2" type="password" class="hide_password form-control ms-3" required="true" placeholder="confirma tu nueva contrasena">
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <a href="{% url 'cambio_contrasena_hecho' %}"><button  type="submit" class="btn btn-success btn-block" name="password_reset_confirm">Cambiar contraseña</button></a>
+                      </div>
+                    </div>
+                    <div>
+                      <ul class="btn rounded-fill text-center" onclick="toggleDarkMode()" ><i class="fa fa-moon"></i><span class="ms-1 d-none d-sm-inline">Modo Nocturno</span></ul>
+                      <button type="button" class="btn btn-sm" onclick="show_trigger()"><span class="ms-1 d-none d-sm-inline">Mostrar Contrasena/Esconder Contrasena</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    <script type="text/javascript" src="{% static 'js/showPassword.js' %}"></script>
 </body>
+<script>
+  function show_trigger(){
+    var input_show_hide_password = document.getElementsByClassName("hide_password");
+    for (i = 0 ; i <= input_show_hide_password.length ; i++) {
+        if (input_show_hide_password[i].getAttribute('type') === "password"){
+            input_show_hide_password[i].setAttribute("type","text")
+    }    
+    else {
+            input_show_hide_password[i].setAttribute("type","password");
+    }
+    }; 
+}
+</script>
+<script src="https://kit.fontawesome.com/5ac4c3813c.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+{% include 'partials/footer.html' %}
 </html>
