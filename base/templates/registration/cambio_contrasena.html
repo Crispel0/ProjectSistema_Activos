@@ -22,6 +22,7 @@
                 <p class="login-box-msg">Estas a punto de cambiar la contraseña, ingresa nueva contraseña.</p>
                   {% csrf_token %}
                   {% for field in form %}
+                    <div><span style="color:red"> {{field.old_password}}</div>
                         {% for error in field.errors %}
                         <p style="color: red;">{{error}}</p>
                         {% endfor %}
