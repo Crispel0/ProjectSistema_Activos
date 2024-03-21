@@ -62,30 +62,38 @@ var ja = Nn;
   const labels_software = ["cantidad_total","activos","no_activos"];
   const labels_hardware_software = ["cantidad_total_activos_software","cantidad_total_activos_hardware"];
 
-function pushDataToArray(data,array){
+/*function pushDataToArray(data,array){
     for(var value in data){
         if (data.hasOwnProperty(value)){
             array.push(data[value])
             console.log(" array agregado ", data[value], " a el array " , array)
         }
     }
-}
+} este es un codigo que utilize para intentar refactorizar la parte de rellanar los datos de los diferentes array pero no pude
+incorporarlo dentro de los if
+*/
 
 cantidad_elementos = 0
 for(var value in Json_data)
 {
         if (Json_data.hasOwnProperty(value)){
             if(cantidad_elementos <= 3){
-                pushDataToArray(Json_data,usuarios)
-                cantidad_elementos += 1
+              if (Json_data.hasOwnProperty(value)){
+                usuarios.push(Json_data[value]) 
+            }
+            cantidad_elementos += 1
             }
             else if(cantidad_elementos > 3 && cantidad_elementos <= 6){
-                pushDataToArray(Json_data,v_sistema_operativo)
-                cantidad_elementos += 1
+              if (Json_data.hasOwnProperty(value)){
+                v_sistema_operativo.push(Json_data[value]) 
+            }
+            cantidad_elementos += 1
             }
             else if (cantidad_elementos > 6){
-                pushDataToArray(Json_data,cantidad_software_hardware)
-                cantidad_elementos += 1
+              if (Json_data.hasOwnProperty(value)){
+                cantidad_software_hardware.push(Json_data[value]) 
+            }
+            cantidad_elementos += 1
             }
         }
     }
@@ -151,7 +159,7 @@ console.log('Cantidad_Software_hardware array:', cantidad_software_hardware);
         datasets: [
           {
             label: "Activo/Desactivo/Cantidad_total",
-            data: [],
+            data: cantidad_software_hardware,
             borderWidth: 1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
