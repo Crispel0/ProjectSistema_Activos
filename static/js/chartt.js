@@ -11272,4 +11272,3 @@ function t(t, e, i) {
     ]
   );
   //configuration and creation of graphics chart js
- 

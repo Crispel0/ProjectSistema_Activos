@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "{% static 'js/chartt.js' %}"></script>
     <title>panel_admin</title>
     <style>
        @media screen and (min-width: 320px) and (max-width: 375px) {
@@ -25,7 +26,6 @@
        }
     </style>
 </head>
-<script src = "{% static 'js/chartt.js' %}"></script>
 
 <body>
 <div class="row">
@@ -62,35 +62,42 @@ var ja = Nn;
   const labels_software = ["cantidad_total","activos","no_activos"];
   const labels_hardware_software = ["cantidad_total_activos_software","cantidad_total_activos_hardware"];
 
-function pushDataToArray(data,array,label){
+function pushDataToArray(data,array){
     for(var value in data){
-        if (data.hasOwnProperty(value) && label.includes(value)){
+        if (data.hasOwnProperty(value)){
             array.push(data[value])
-            console.log(" array agregado " + data[value] + " a el array " + array)
+            console.log(" array agregado ", data[value], " a el array " , array)
         }
     }
 }
 
 cantidad_elementos = 0
-for(var value in Json_data){
-    while(cantidad_elementos <= Json_data[value]){
+for(var value in Json_data)
+{
         if (Json_data.hasOwnProperty(value)){
             if(cantidad_elementos <= 3){
-                pushDataToArray(Json_data,usuarios,labels_activos)
+                pushDataToArray(Json_data,usuarios)
                 cantidad_elementos += 1
             }
             else if(cantidad_elementos > 3 && cantidad_elementos <= 6){
-                pushDataToArray(Json_data,v_sistema_operativo,labels_software)
+                pushDataToArray(Json_data,v_sistema_operativo)
                 cantidad_elementos += 1
             }
-            else {
-                pushDataToArray(Json_data,cantidad_software_hardware,labels_hardware_software)
+            else if (cantidad_elementos > 6){
+                pushDataToArray(Json_data,cantidad_software_hardware)
                 cantidad_elementos += 1
             }
         }
     }
-}
-  
+
+
+ 
+console.log('Usuarios array:', usuarios);
+console.log('v_sistema_operativo array:', v_sistema_operativo);
+console.log('Cantidad_Software_hardware array:', cantidad_software_hardware);
+
+
+
 
   
   
@@ -98,36 +105,15 @@ for(var value in Json_data){
 
   
   !(function () {
-    const grafico_total = document.getElementById("grafico_total");
+    const grafico_total = document.getElementById("grafico_total").getContext('2d');
     new ja(grafico_total, {
       type: "doughnut",
       data: {
         labels: labels_activos,
         datasets: [
           {
-            data: [2,4,6,8,10],
-            borderWidth: 1,
-            borderColor: "#36A2EB",
-            backgroundColor: barColors,
-          },
-        ],
-      },
-      options: {
-        responsive:true
-      }
-    });
-    const grafico_usuarios = document.getElementById("grafico_usuarios");
-    new ja(grafico_usuarios, {
-      type: "line",
-      data: {
-        labels: labels_usuarios,
-        datasets: [
-          {
-            label: "Usuarios Activos/Inactivos",
             data: usuarios,
             borderWidth: 1,
-            fill: false,
-            pointRadius:1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
           },
@@ -137,15 +123,16 @@ for(var value in Json_data){
         responsive:true
       }
     });
-    const grafico_activos = document.getElementById("grafico_activos");
+    
+    const grafico_activos = document.getElementById("grafico_activos").getContext('2d');
     new ja(grafico_activos, {
       type: "bar",
       data: {
         labels: labels_activos,
         datasets: [
           {
-            label: "Activos/Desactivos/Categorizacion",
-            data: [20.30,40],
+            label: "Activos/Desactivos",
+            data: v_sistema_operativo,
             pointRadius:1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
@@ -156,15 +143,15 @@ for(var value in Json_data){
         responsive:true
       }
     });
-    const grafico_software = document.getElementById("grafico_software");
+    const grafico_software = document.getElementById("grafico_software").getContext('2d');
     new ja(grafico_software, {
       type: "radar",
       data: {
         labels: labels_software,
         datasets: [
           {
-            label: "Activo/Desactivo/Categorizacion",
-            data: [2,4,6,8,10],
+            label: "Activo/Desactivo/Cantidad_total",
+            data: [],
             borderWidth: 1,
             borderColor: "#36A2EB",
             backgroundColor: barColors,
@@ -180,7 +167,7 @@ for(var value in Json_data){
         responsive: true
       },
     });
-    const grafico_hardware = document.getElementById("grafico_hardware");
+    const grafico_hardware = document.getElementById("grafico_hardware").getContext('2d');
     new ja(grafico_hardware, {
       type: "polarArea",
       data: {
@@ -188,7 +175,7 @@ for(var value in Json_data){
         datasets: [
           {
             label: "Categorizacion",
-            data: [2,4,6,8,10],
+            data: cantidad_software_hardware,
             borderWidth: 1,
             fill: false,
             pointRadius:1,
