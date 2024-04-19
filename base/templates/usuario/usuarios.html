@@ -46,7 +46,7 @@
       <td>
         <a class="btn btn-primary" onclick="showSweetAlert('editar' ,'../usuarios_editar/{{usuario.id}}')">
           <i class="fas fa-edit" title="Editar"></i></a>
-        <a class="btn btn-danger" onclick="showSweetAlert('eliminar', '../usuarios_eliminar/{{ usuario.id }}' )">
+        <a class="btn btn-danger" id="modalEliminar{{usuario.id}}" onclick="showSweetAlert('eliminar' ,'../usuarios_eliminar/{{usuario.id}}')">
         <i class="fas fa-trash-alt" title="eliminar"></i></a>
       </td>
 
@@ -56,9 +56,19 @@
 
     {% endfor %}
 
-    <script>
-    
-    </script>
+  <script>
+    /**
+    var modal = document.getElementById('modalEliminar{{usuario.id}}')
+    modal.addEventListener('show.bd.modal', function(e) {
+      var modalContent = modal.querySelector('modal-content')
+      fetch('templates/modals/delete_modal.html')
+      .then(response => response.text())
+      .then(data => {
+        modalContent.innerHTML = data;
+      });
+    });
+    /**
+  </script>
   </tbody>
 </table>
 {% include 'partials/js.html' %}
@@ -66,6 +76,8 @@
 
 {% block javascript %}
 {% endblock javascript %}
+
+
 
 
 

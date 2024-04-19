@@ -57,9 +57,10 @@ const v_sistema_operativo = [];
 const cantidad_software_hardware = [];
 
 var ja = Nn; 
-  const labels_activos = ["activos_totales","Activos","no_activos","is_staff"];
-  const labels_usuarios = ["usuarios_totales","Activos","no_activos"];
-  const labels_software = ["cantidad_total","activos","no_activos"];
+
+  const labels_usuarios = ["usuarios_totales","Activos","no_activos","usuarios_staff"];
+  const labels_s_activos = ["sistemas_operativos_total","sistemas_operativos_activos","sistema_operativo_no_activos"];
+  const labels_software = ["cantidad_total_software","software_activos","software_no_activos"];
   const labels_hardware_software = ["cantidad_total_activos_software","cantidad_total_activos_hardware"];
 
 /*function pushDataToArray(data,array){
@@ -113,11 +114,11 @@ console.log('Cantidad_Software_hardware array:', cantidad_software_hardware);
 
   
   !(function () {
-    const grafico_total = document.getElementById("grafico_total").getContext('2d');
+    const grafico_usuarios = document.getElementById("grafico_total").getContext('2d');
     new ja(grafico_total, {
       type: "doughnut",
       data: {
-        labels: labels_activos,
+        labels: labels_usuarios,
         datasets: [
           {
             data: usuarios,
@@ -132,11 +133,11 @@ console.log('Cantidad_Software_hardware array:', cantidad_software_hardware);
       }
     });
     
-    const grafico_activos = document.getElementById("grafico_activos").getContext('2d');
+    const grafico_s_version = document.getElementById("grafico_activos").getContext('2d');
     new ja(grafico_activos, {
       type: "bar",
       data: {
-        labels: labels_activos,
+        labels: labels_s_activos,
         datasets: [
           {
             label: "Activos/Desactivos",

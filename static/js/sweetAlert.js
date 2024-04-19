@@ -1,4 +1,4 @@
-
++++++++++++++++++++++++++++++++++++++++++
 const boton = document.querySelector("btn btn-success")
 
 boton.addEventListener("click", prevenirEvent);

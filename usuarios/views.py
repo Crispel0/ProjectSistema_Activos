@@ -96,9 +96,19 @@ def usuarios_editar(request, pk):
     return render(request,'usuario/editar.html',context)
 
 def usuarios_eliminar(request, pk): 
-    Usuario.objects.filter(id=pk).update(
+
+    usuario_eliminar = Usuario.objects.filter(id=pk).update(
             estado='0'
         )
+    
+    #Usuario.objects.filter(id=pk).delete()
+
+    if usuario_eliminar is not None:
+        print(f"the id of the user is: {usuario_eliminar}")
+    else:
+        print(f"the id user is not found")
+    
+
     messages.success(request, "Accion realizada correctamente!")
     return redirect('usuarios')
     
@@ -106,6 +116,10 @@ def usuarios_eliminar(request, pk):
 def usuarios(request):
     rol_usuario = Usuario.objects.filter (user = request.user.id).first() 
     
+    if rol_usuario is not None:
+        print(f"The id of the rol usuario is {rol_usuario.id}")
+    else:
+        print("No rol usuario found for the current user")
     
     if rol_usuario.rol == "Administrador":
         listar_usuario=Usuario.objects.filter(estado='1')
