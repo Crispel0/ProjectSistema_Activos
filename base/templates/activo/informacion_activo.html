@@ -1,0 +1,277 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+  <header>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <title>Hoja de vida Activo</title>
+  </header>
+  <body>
+    <div class="container ">
+      <div class="row col-12">
+        <div class="header">
+          <img
+            src="http://127.0.0.1:8000{% static 'img/logo nuevo 2022.png' %}"
+          />
+          <img
+             src="http://127.0.0.1:8000{% static 'img/Escudo.png' %}"
+          />
+        </div>
+        <br/>
+        <br/>
+        {% csrf_token %}
+        <h1 class="text-center">Activo Hardware</h1>
+        <table class="table my-3 table-responsive">
+          <thead>
+              <p><h2>{{activo.activo_id}}</h2></p>
+              <th>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Tarjeta madre</th>
+                    <th>Fuente poder</th>
+                    <th>Disco duro 1</th>
+                    <th>Disco duro 2</th>
+                    <th>Memoria ram slot 1</th>
+                    <th>Memoria ram slot 2</th>
+                    <th>Tarjeta video</th>
+                    <th>Monitor</th>
+                    <th>Mouse</th>
+                    <th>Teclado</th>
+                </tr>
+              </th>
+             
+              <th>
+           
+                <tr>
+                  <th>Modelo</th>
+                  <td>
+                    {{ informacion_hardware.tarjeta_madre_modelo }}</td>
+                  <td>
+                    {{ informacion_hardware.fuente_poder_modelo. }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.procesador_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.disco_duro_1_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.disco_duro_2_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.ram_slot_1_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.ram_slot_2_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.tarjeta_video_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.monitor_modelo }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.mouse_modelo }}
+                  </td>
+                  <td>
+                    {{ informacion_hardware.teclado_modelo }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Marca</th>
+                    <td>
+                      {{ informacion_hardware.tarjeta_madre_marca }}</td>
+                    <td>
+                      {{ informacion_hardware.fuente_poder_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.procesador_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.disco_duro_1_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.disco_duro_2_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.ram_slot_1_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.ram_slot_2_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.tarjeta_video_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.monitor_marca }}
+                    </td>
+                    <td>
+                    {{ informacion_hardware.mouse_marca }}
+                    </td>
+                    <td>
+                      {{ informacion_hardware.teclado_marca }}
+                    </td>
+                  </tr>
+                <tr>
+                  <th>Serie</th>
+                  <td>
+                    {{ informacion_hardware.tarjeta_madre_serie }}</td>
+                  <td>
+                    {{ informacion_hardware.fuente_poder_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.procesador_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.disco_duro_1_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.disco_duro_2_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.ram_slot_1_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.ram_slot_2_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.tarjeta_video_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.monitor_serie }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.mouse_serie }}
+                  </td>
+                  <td>
+                    {{ informacion_hardware.teclado_serie }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>No aplica</th>
+                  {% if informacion_hardware.tarjeta_madre_no_aplica == false %}
+                    <td></td>
+                  {% endif %}
+                  {% if informacion_hardware.fuente_poder_no_aplica == false %}
+                    <td></td>
+                  {% endif %} 
+                  </td>
+                  {% if informacion_hardware.procesador_no_aplica == false %}
+                  <td></td>
+                  {% endif %} 
+
+                  <td></td>
+                  
+                  {% if informacion_hardware.disco_duro_1_no_aplica == false %}
+                    <td></td>
+                  {% endif %}
+                  <td>
+                  {{ informacion_hardware.disco_duro_2_no_aplica }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.ram_slot_1_no_aplica }}
+                  </td>
+                  <td>        
+                  {{ informacion_hardware.ram_slot_2_no_aplica }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.tarjeta_video_no_aplica }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.monitor_no_aplica }}
+                  </td>
+                  <td>
+                  {{ informacion_hardware.mouse_no_aplica }}
+                  </td>
+                  <td>
+                    {{ informacion_hardware.teclado_no_aplica }}
+                  </td>
+                </tr>
+              </th>
+          </thead>
+         
+      </table>
+      <br><br>
+        <h1>Activo Software</h1>
+        <br><br>
+        <table class="table my-3 table-responsive">
+            <th>
+                <tr>
+                    <th>sistema operativo</th>
+                    <th>version sistema op</th>
+                    <th>ofimatica</th>
+                    <th>version ofimatica</th>
+                    <th>antivirus</th>
+                    <th>navegador 1</th>
+                    <th>navegador 2</th>
+                    <th>herramienta cloud</th>
+                </tr>
+            </th> 
+            <tbody>
+              <tr>
+                <td>{{informacion_software.sistema_operativo}}</td>
+                <td>{{informacion_software.version_sistema_op}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>{{version_ofimatica.paquete}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{version_ofimatica.version}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{antivirus.antivirus}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>      
+              <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{navegador_1.navegador}}</td>
+                <td>{{navegador_2.navegador}}</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{cloud.herramienta}}</td>
+              </tr>
+            </tbody>
+      </table>
+      </div>
+    </div>
+  </body>
+</html>

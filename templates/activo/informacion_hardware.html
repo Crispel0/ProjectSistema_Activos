@@ -1,0 +1,58 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+        @media (max-width: 724px) {
+    h1{
+        font-size: 15px;
+       text-align: center;
+    }
+    p{
+        font-size: 13px;
+    }
+    .form-label{
+        font-size: 13px;
+    }
+    }    
+</style>
+<head>
+    <title>informacion hardware</title>
+</head>
+
+<h1>Formulario de hardware</h1>
+{% for item in consulta %}
+    <p>Marca. {{item.marca}}</p>  
+    <p>Activo No. {{item.serie}}</p> 
+{% endfor %}
+
+<form method="POST" style="width: 100%;" role="form" id="form">
+    {% csrf_token %}
+
+
+    <div class="container border ">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <table class="table table-responsive">
+                    {% for field in form %}
+                        {% if forloop.counter0|divisibleby:5 and not forloop.first %}
+                            </tr><tr>
+                        {% endif %}
+                            <th>{{field.label}}</th>
+                            <td>{{ field }}</td>
+                    {% endfor %}
+                </table>  
+            </table>
+        </div>
+<script src="{% static 'js/active_deactivate_input.js' %}"> </script>
+
+</div>
+
+<button type="submit" class="my-2 btn btn-success" onclick="showSweetAlert('agregar' ,'../listado/')">Guardar</button>
+<a  class="my-2 btn btn-danger" onclick="showSweetAlert('eliminar' ,'../listado/')">Volver</a>
+</form>
+{% endblock %}  
+
+
+{% include 'partials/footer.html' %}

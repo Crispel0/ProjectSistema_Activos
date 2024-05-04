@@ -1,0 +1,77 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+<link rel="text/html" type="text/css" href="/activos_fijos/static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
+
+<link rel="import" href="/base/templates/partials/js.html">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-6  col-lg-4">
+        <div class="card p-3">
+            <div class="card-body">
+                <h3>Agregar activo</h3>
+            </div>
+            <div class="card-text">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <button class="btn btn-success" type="submit" onclick="showSweetAlert('Agregar' ,'./{{item.id}}')"> Guardar </button>
+                 </form>
+                </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-12 col-md-6  col-lg-8">
+        <table id="activos" class="display table-responsive" style="width:100%">
+            <thead>
+            <tr>
+                <th class="text-center">Numero</th>
+                <th>Marca</th>
+                <th>Número de serie</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                
+                {% for item in consulta_activos %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{item.marca}}</td>
+                    <td>{{item.serie}}</td>
+                    <td>{{item.activo}}</td>
+                    <td>{{item.estado}}</td>
+
+                    {% if item.estado_software == False and item.estado_hardware == False %}
+                    <td><a href="{% url 'informacion_software' item.id %}"><i class="fa-solid fa-file text-danger" title="Software"></i></a></td>
+                    {% else %}
+                    <td><a  Target="_blank" onclick="showSweetAlert('editar','../informacion_software/{{item.id}}')"><i class="fa-solid fa-file text-success" title="Ver info software"></i></a>
+                    <a Target="_blank" href="{% url 'generar_pdf' item.id %}"><i class="fa-solid fa-file-pdf text-success" title="generar_pdf"></i></a></td>
+                    {% endif %}
+                    <td><a  Target="_blank" onclick="showSweetAlert('editar','../informacion_hardware/{{item.id}}')"><i class="fa-solid fa-save text-danger" title="Ver info hardware"></i></a></td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <script src="/static/js/darkMode.js"></script>
+    </div>
+</div>
+
+{% include 'partials/js.html' %}
+{% endblock %}  
+
+
+{% include 'partials/footer.html' %}

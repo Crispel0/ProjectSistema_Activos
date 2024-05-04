@@ -1,0 +1,9 @@
+{% extends 'partials/body.html' %}
+
+{% block content %}
+<h1>Bienvenido {{rol_usuario.nombres}}</h1>
+<h2>tu identificacion es :<strong>{{user.username}}</strong></h2>
+{% endblock %}  
+
+
+{% include 'partials/footer.html' %}
