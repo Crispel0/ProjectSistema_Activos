@@ -6,11 +6,11 @@ urlpatterns = [
     path("listado/", listado_activos, name="listado_activos"),
     path("informacion_software/<int:id>", views.informacion_software, name="informacion_software"),
     path("informacion_hardware/<int:id>", informacion_hardware, name="informacion_hardware"),
-
     path("administrar_software/", administar_software, name="administar_software"),
     path("administar_software/", administar_software, name="administar_software"),
     path("administrar_software/agregar_sistema_operativo/", agregar_sistema_operativo, name="agregar_sistema_operativo"),
     path("administrar_software/agregar_sistema_operativo/<int:pk>", editar_sistema_operativo, name="agregar_sistema_operativo"),
+    path("administar_software/agregar_sistema_operativo/<int:pk>", editar_sistema_operativo, name="agregar_sistema_operativo"),
     path ("administrar_software/agregar_version_sistema_operativo/", agregar_version_sistema_operativo, name="agregar_version_sistema_operativo"),
     path ("administar_software/agregar_version_sistema_operativo/<int:pk>",editar_version_sistema_operativo, name="editar_version_sistema_operativo"),
     path ('administrar_software/agregar_version_sistema_operativo/<int:pk>',agregar_version_sistema_operativo, name="agregar_version_sistema_operativo"),
