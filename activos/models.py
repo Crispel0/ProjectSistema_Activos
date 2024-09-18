@@ -80,6 +80,9 @@ class HerramientaCloud (models.Model):
     
     def __str__(self):
         return self.herramienta
+
+class Factura(models.Model):
+    factura = models.DateField(auto_now=True)
         
 
 class InformacionSoftware(models.Model): 
@@ -94,7 +97,7 @@ class InformacionSoftware(models.Model):
     herramienta_cloud = models.ForeignKey (HerramientaCloud, on_delete = models.CASCADE, null=True) #Eliminar propiedades null y blank
     id_activo = models.OneToOneField("TipoActivo", verbose_name="Activo", on_delete=models.CASCADE, null=True) #Eliminar propiedades null y blank
     usuario_registro = models.ForeignKey(Usuario, on_delete= models.CASCADE)
-    
+    factura = models.ForeignKey(Factura ,on_delete=models.CASCADE,null=False)
     def __str__(self):
         return self.id_activo
     
