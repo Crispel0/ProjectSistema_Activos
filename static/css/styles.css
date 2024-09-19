@@ -1,5 +1,9 @@
 
 /*change of background of the body of each page to color similiar to black*/
+.bgcolor{
+  background-color: #b60404;
+}
+
 .dark-mode .bgnavbar {
   background: #333;
   color: #fff;}
